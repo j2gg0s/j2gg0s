@@ -1,6 +1,6 @@
 .PHONY: run-server
 run-server:
-	docker run -ti --name mysql -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 -d mysql:8.0
+	docker run --name mysql -e MYSQL_ROOT_PASSWORD=root -p 3306:3306 -d mysql:8.0
 
 .PHONY: init-database
 init-database:
@@ -13,6 +13,10 @@ connect:
 .PHONY: insert
 insert:
 	mysql -h127.0.0.1 -uroot -proot -D j2gg0s -e "INSERT INTO visitor(name, visited_timestamp, visited_datetime) VALUES('j2gg0s', '2022-11-16 22:17:00', '2022-11-16 22:17:00');"
+
+.PHONY: insert-tz
+insert-tz:
+	mysql -h127.0.0.1 -uroot -proot -D j2gg0s -e "INSERT INTO visitor(name, visited_timestamp, visited_datetime) VALUES('j2gg0s', '2022-11-16 22:17:00 +08:00', '2022-11-16 22:17:00');"
 
 .PHONY: select
 select:
