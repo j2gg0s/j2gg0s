@@ -117,8 +117,9 @@ func ExampleSafeUpdate() {
 	//   `id` bigint(20) NOT NULL,
 	//   `name` varchar(125) NOT NULL,
 	//   `age` int(11) NOT NULL DEFAULT '0',
+	//   `sex` int(11) NOT NULL DEFAULT '0',
 	//   PRIMARY KEY (`id`),
-	//   KEY `name` (`name`)
+	//   KEY `name` (`name`,`sex`)
 	// ) ENGINE=InnoDB DEFAULT CHARSET=latin1
 	//
 	// UPDATE/DELETE without key_column in WHERE

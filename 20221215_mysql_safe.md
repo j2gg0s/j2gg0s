@@ -11,8 +11,8 @@
 - 如果 SELECT 没有指定 LIMIT, 则最多返回 [sql_select_limit](https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_sql_select_limit) 行数据.
 - 涉及多张表的 SELECT, 如果扫描的行数超过 [max_join_size](https://dev.mysql.com/doc/refman/5.7/en/server-system-variables.html#sysvar_max_join_size) 则会被拒绝执行并返回错误.
 
-需要注意, UPDATE/DELETE 即使有 WHERE, 但如果 WHERE 中的列不是 key_column 的话, 依然会报错.
-按我的理解, key_column 是指索引字段, 但并不限制必须是 unique.
+需要注意, UPDATE/DELETE 即使有 WHERE, 但如果 WHERE 中的列不时 key_column 的话, 依然会报错.
+按我的理解, key_column 是指索引字段或者联合索引中的某个字段.
 
 具体可以参考 [Using Safe-Updates Mode](https://dev.mysql.com/doc/refman/5.7/en/mysql-tips.html#safe-updates) 和 [examples/mysql-safe](./examples/mysql-safe) 中的例子:
 ```
