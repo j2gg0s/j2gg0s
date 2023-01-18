@@ -13,7 +13,7 @@ GOMAXPROCS 限制了用来并发执行代码的系统线程数量, 默认等于 
 这种 k8s 下的默认行为是否合理, 我们很难直接从代码中得出一个结论.
 通过控制变量的方式来观察结果似一个不错的选择
 
-![maxgoprocs_heavy_gc.png](./images/maxgoprocs_heavy_gc.png)
+![gomaxprocs_heavy_gc.png](./images/gomaxprocs_heavy_gc.png)
 在 11:35 左右, 我们将应用的 GOMAXPROCS 主动设置为 4, 对比 14:30 和 11:30 的数据可以看到:
 
 - go version: 1.17
@@ -24,4 +24,4 @@ GOMAXPROCS 限制了用来并发执行代码的系统线程数量, 默认等于 
 - goroutine 在 Runnable 停留的时间 +50%
 
 在一些负载较轻的应用中, 效果会更明显.
-![maxgoprocs_gc.png](./images/maxgoprocs_gc.png)
+![gomaxprocs_gc.png](./images/gomaxprocs_gc.png)
