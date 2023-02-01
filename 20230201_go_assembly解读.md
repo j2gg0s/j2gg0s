@@ -1,4 +1,4 @@
-# [GoLang] Go Assmebly 解读
+# [GoLang] 门外汉系列: Go Assmebly 解读
 
 Go 有一层抽象的汇编层来屏蔽不同平台和机器的差异.
 
