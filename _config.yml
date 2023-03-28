@@ -1,8 +1,4 @@
-plugins:
-  - jekyll-relative-links
 relative_links:
   enabled: true
   collections: true
-include:
-  - 20230323_k8s_cni_的简单介绍.md
 theme: minima
