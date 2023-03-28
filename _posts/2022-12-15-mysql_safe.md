@@ -14,7 +14,7 @@
 需要注意, UPDATE/DELETE 即使有 WHERE, 但如果 WHERE 中的列不时 key_column 的话, 依然会报错.
 按我的理解, key_column 是指索引字段或者联合索引中的某个字段.
 
-具体可以参考 [Using Safe-Updates Mode](https://dev.mysql.com/doc/refman/5.7/en/mysql-tips.html#safe-updates) 和 [examples/mysql-safe](./examples/mysql-safe) 中的例子:
+具体可以参考 [Using Safe-Updates Mode](https://dev.mysql.com/doc/refman/5.7/en/mysql-tips.html#safe-updates) 和 [examples/mysql-safe](../examples/mysql-safe) 中的例子:
 ```
 sql_safe_updates -> 1, sql_select_limit -> 2
 

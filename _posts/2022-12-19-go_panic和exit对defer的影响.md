@@ -64,6 +64,6 @@ os.Exit will not trigger defer be executed
 下图左侧是 fnPanicS 生成的汇编代码, 右侧为 fnExitS.
 Line 28 显示 `os.Exit` 直接导致了函数返回, 进而导致的编译器插入的 Line 29 runtime.deferreturn 没有被执行.
 
-![asm_panic_exit.png](./images/asm_panic_exit.png)
+![asm_panic_exit.png](../images/asm_panic_exit.png)
 
 [rs/zerolog]: https://github.com/rs/zerolog.git
