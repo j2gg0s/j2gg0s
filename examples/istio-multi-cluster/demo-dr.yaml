@@ -1,0 +1,17 @@
+---
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: helloworld
+  namespace: istio-system
+spec:
+  host: helloworld.dev.svc.cluster.local
+  trafficPolicy:
+    loadBalancer:
+      localityLbSetting:
+        failoverPriority:
+          - "topology.istio.io/network"
+          - "topology.kubernetes.io/region"
+        enabled: true
+    outlierDetection:
+      consecutive5xxErrors: 5
