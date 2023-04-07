@@ -1,33 +1,33 @@
 k8s 的网络模型可以简单的划分为两部分:
-- 允许通过 Service 访问背后的 Pod, 这部分功能有 kube-proxy 通过 ipvs/iptables 提供.
-- 为 Pod 分配集群内唯一的 IP 并支持 Pod 相互之间的访问, 这部分功能有 [Network Plugins][] 提供.
+- kube-proxy 依赖 ipvs/iptables, 支持通过 Service 访问背后的 Pod.
+- [Network Plugins][] 为 Pod 分配集群内唯一的 IP 并支持 Pod 相互之间的访问.
 
-Network Plugin 有很多的具体实现, Flannel 是其中一种, 以简单易用而出名.
-其实现的主要功能包括几个方面:
-- [flannel cni plugin][] 实现了 CNI 标准, 通过调用 [bridge plugin][] 和 [host-local plugin][], 根据 Node 的 podCIDR 为 Pod 分配唯一 IP.
-- [flanneld][] 作为 agent, 监听 Node 变更事件, 配置 vxlan 等, 为 Pod 提供相互之间的访问能力.
+Network Plugin 有很多的具体实现, Flannel 是其中一种, 以简单易用出名.
+其主要功能包括两个:
+- [flannel cni plugin][] 实现了 CNI, 通过调用 [bridge plugin][] 和 [host-local plugin][], 根据 Node 的 podCIDR 为 Pod 分配唯一 IP.
+- [flanneld][] 作为 agent, 监听 Node 变更事件, 配置 vxlan, 为 Pod 提供相互之间的访问能力.
 
 ## 为 Pod 分配 IP
 [CNI][] 是由 k8s 牵头制定的 specification,
-规范了 k8s, container runtime 和 cni plugin 三者之间如何配置集群网络.
+规范了 k8s, container runtime 和 cni plugin 三者之间如何协作配置集群网络.
 CNI 的语义相对简单, 只定义了四个接口, ADD/DEL/CHECK/VERSION.
-Pod 创建时, container runtime 会调用 cni plugin 的 ADD 接口为 Pod 配置网络, 包括虚拟网卡, IP 和路由等.
-Pod 销毁时, container runtime 通过 cni plugin 的 DEL 接口回收之前分配的网络资源.
+当 Pod 创建时, container runtime 调用 cni plugin 的 ADD 接口为 Pod 配置网络, 包括虚拟网卡, IP 和路由等.
+当 Pod 销毁时, container runtime 通过 cni plugin 的 DEL 接口回收之前分配的网络资源.
 
-flannel 自身并没有实现这些功能, 只是实现 CNI 的接口, 实际工作委托给 bridge 和 host-local.
-bridge 和 host-local 都是 CNI 官方实现的 plugin, 避免第三方需要重复实现一些基本的功能.
+flannel 自身并没有实现这些功能, 只是实现了 CNI 的接口, 实际工作被委托给 bridge 和 host-local.
+bridge 和 host-local 都是 CNI 官方实现的 plugin, 避免第三方重复实现一些基本的功能.
 
 ### host-local plugin, IP Address Management (IPAM)
 host-local 在节点 podCIDR 的限制下为节点上 Pod 分配唯一 IP.
-首先, flanneld 会为每个节点分配一段不重叠的网段作为节点的 podCIDR.
-host-local 直接使用节点的文件系统来保存已分配的 IP.
-当新的 Pod 创建时, host-local 从上次分配的 IP 开始遍历 podCIDR, 找到下一个可用 IP 分配给 Pod.
+首先, 每个节点都拥有不相交的 podCIDR, 限制了节点上 Pod 的地址范围.
+host-local 使用节点的文件系统保存已分配的 IP.
+当新 Pod 创建时, host-local 从上次分配的 IP 开始遍历 podCIDR, 找到下一个可用 IP 分配给 Pod.
 
 下面是某配置和其对应的已分配 IP,
 `/var/lib/cni/flannel/{id}` 是 flannel cni plugin 用来保存传递给 bridge 的配置,
 `/var/lib/cni/networks/{name}` 是 host-local 用来存储已分配地址的文件夹.
 ```bash
-# cat /var/lib/cni/flannel/577362af6ddde7acfade627730120025bdf6d5444913ae5a89a5ea3494f57bc6  | jq '.ipam'
+~ cat /var/lib/cni/flannel/577362af6ddde7acfade627730120025bdf6d5444913ae5a89a5ea3494f57bc6  | jq '.ipam'
 {
   "ranges": [
     [
@@ -43,7 +43,7 @@ host-local 直接使用节点的文件系统来保存已分配的 IP.
   ],
   "type": "host-local"
 }
-# ls -alht /var/lib/cni/networks/cbr0/
+~ ls -alht /var/lib/cni/networks/cbr0/
 总用量 32K
 drwxr-xr-x. 2 root root 175 4月   4 20:50 .
 -rw-r--r--. 1 root root  70 4月   4 20:50 172.22.0.30
@@ -59,11 +59,12 @@ drwxr-xr-x. 3 root root  18 3月  29 02:16 ..
 ```
 
 ### bridge plugin
-bridge plugin 除了调用 IPAM 为 Pod 分配 IP 外,
-主要是通过 [bridge][] 和 [veth][] 打通同一节点上 Pod 之间的网络.
+bridge plugin 除了调用 host-local 为 Pod 分配 IP 外,
+还通过创建 [bridge][] 和 [veth][] 打通同一节点上 Pod 之间的网络.
 
-每个 Pod 都拥有独立的 network namespace, 即使在同一节点上也无法直接访问.
+Pod 的网络空间(Network Namespace)是隔离的, 即使在同一节点上也无法直接访问.
 
+为了实现同一节点上的 Pod 之间的通信,
 bridge plugin 首先会在节点的网络空间创建一个 [bridge][],
 随后为每个容器创建 [veth][], 并链接 Pod 和节点的网络空间.
 进而, 节点上的所有 Pod 都链接到了同一个 [bridge][], 实现互相之间的访问.
@@ -72,7 +73,7 @@ bridge plugin 首先会在节点的网络空间创建一个 [bridge][],
 
 [bridge][] 的默认名称是 cni0.
 ```bash
-# ifconfig cni0
+~ ifconfig cni0
 cni0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1450
         inet 172.22.0.1  netmask 255.255.255.0  broadcast 172.22.0.255
         inet6 fe80::f883:1dff:fe22:bb5e  prefixlen 64  scopeid 0x20<link>
@@ -85,13 +86,13 @@ cni0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1450
 
 Pod 的 gateway 被指定为 cni0.
 ```bash
-# kubectl exec -n dev $POD -- ip route list -n
+~ kubectl exec -n dev $POD -- ip route list -n
 default via 172.22.0.1 dev eth0
 ```
 
 Pod 和 cni0 通过 veth 关联.
 ```bash
-# ip link show type veth
+~ ip link show type veth
 28: vethc782ee57@if2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1450 qdisc noqueue master cni0 state UP mode DEFAULT group default
     link/ether 62:b6:56:6e:f4:b8 brd ff:ff:ff:ff:ff:ff link-netnsid 0
 29: vethb4e346a4@if2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1450 qdisc noqueue master cni0 state UP mode DEFAULT group default
@@ -110,7 +111,7 @@ Pod 和 cni0 通过 veth 关联.
 
 对应 CNI 配置:
 ```bash
-# cat /var/lib/cni/flannel/577362af6ddde7acfade627730120025bdf6d5444913ae5a89a5ea3494f57bc6  | jq ''
+~ cat /var/lib/cni/flannel/577362af6ddde7acfade627730120025bdf6d5444913ae5a89a5ea3494f57bc6  | jq ''
 {
   "cniVersion": "0.3.1",
   "hairpinMode": true,
@@ -145,7 +146,7 @@ flannel 在整个体系中要完成几个工作:
 - 根据集群的 podCIDR, 修改 iptables, 按需实现 SNAT
 
 ```bash
-# cat /run/flannel/subnet.env
+~ cat /run/flannel/subnet.env
 FLANNEL_NETWORK=172.22.0.0/16
 FLANNEL_SUBNET=172.22.0.1/24
 FLANNEL_MTU=1450
@@ -160,12 +161,13 @@ vxlan 并不仅仅只是点对点的隧道, 也支持组的概念, 多个端可�
 [linux 上实现 vxlan 网络](https://cizixs.com/2017/09/28/linux-vxlan/) 可以帮助你快速理解这种技术.
 
 flanneld 会在节点上创建名为 flannel.1 的 [vetp][], 并在监听到其他节点的信息后, 修改路由表.
-下面的例子中, 本节点的 podCID 是 172.22.0.0/24, flannel.1 的地址是 172.22.0.0.
-另外一个节点的 podCIDR 是 172.22.1.0/24, flannel.1 的地址是 172.22.1.1.
-当在本节点反问其他节点的 Pod 时, 流量会被路由到本节点的 [vetp][], 并指定下一条为对应节点的 [vetp][].
+下面的例子中:
+- 本节点的 podCID 是 172.22.0.0/24, flannel.1 的地址是 172.22.0.0.
+- 另外一个节点的 podCIDR 是 172.22.1.0/24, flannel.1 的地址是 172.22.1.1.
+当在本节点访问其他节点的 Pod 时, 流量会被路由到本节点的 [vetp][], 并指定下一跳为对应节点的 [vetp][].
 
 ```bash
-# ifconfig flannel.1
+~ ifconfig flannel.1
 flannel.1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1450
         inet 172.22.0.0  netmask 255.255.255.255  broadcast 0.0.0.0
         inet6 fe80::90b0:51ff:feb8:dcf8  prefixlen 64  scopeid 0x20<link>
@@ -174,10 +176,10 @@ flannel.1: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1450
         RX errors 0  dropped 0  overruns 0  frame 0
         TX packets 21367  bytes 4181524 (3.9 MiB)
         TX errors 0  dropped 8 overruns 0  carrier 0  collisions 0
-# kubectl get nodes -o json | jq '.items[].spec.podCIDR'
+~ kubectl get nodes -o json | jq '.items[].spec.podCIDR'
 "172.22.1.0/24"
 "172.22.0.0/24"
-# route -n
+~ route -n
 Kernel IP routing table
 Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 0.0.0.0         10.30.180.254   0.0.0.0         UG    100    0        0 eth0
