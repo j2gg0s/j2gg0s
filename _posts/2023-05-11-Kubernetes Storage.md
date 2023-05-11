@@ -3,13 +3,13 @@
 
 用户申请存储资源的方式主要有两种: [Pod.spec.volumes](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#volume-v1-core)
 和 [PersistentVolumeClaim](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#persistentvolumeclaim-v1-core).
-在申请后, 用户还需要通过 [Container.volumeMounts](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#container-v1-core) 指定如何挂载到容器.
+除了申请, 用户还需要在 [Container.volumeMounts](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#container-v1-core) 中指定如何挂载到容器.
 
 对于用户的请求, k8s 首先会去管理员预先分配的 [PersistentVolume](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#persistentvolume-v1-core) 中寻找符合的资源.
-如果没有匹配的预分配资源, 则 k8s 会尝试通过 provision 机制创建并分配 [PersistentVolume][].
+如果没有匹配的预分配资源, 则 k8s 会尝试通过 provision 机制创建并分配 [PersistentVolume](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#persistentvolume-v1-core).
 
-用户申请和资源匹配的核心在于 storageClass.
-管理员为每一种支持的存储方案创建一个 [StorageClass](https://kubernetes.io/docs/concepts/storage/storage-classes/), 其中绑定了 provisioner 和相关参数.
+匹配的核心在于 storageClass.
+管理员为每一种支持的存储方案创建一个 [StorageClass](https://kubernetes.io/docs/concepts/storage/storage-classes/), 其中申明了相关信息和参数.
 用户在申请存储资源时, 需要在管理员提供的范围内, 申明预期的 storageClass.
 
 ## VolumePlugin: in-tree, flex 和 csi
