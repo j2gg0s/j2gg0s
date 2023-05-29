@@ -2,14 +2,15 @@
 ```bash
 Warning: resource deployments/busybox-demo is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by kubectl apply. kubectl apply should only be used on resources created declaratively by either kubectl create --save-config or kubectl apply. The missing annotation will be patched automatically.
 ```
-由于当时并没有时间去了解具体的原因, 为了避免可能的不良影响, 我准备转到 `kubectl patch`.
-当翻阅文档时, 可以明显的感受到 k8s 的 patch 基本考虑并处理了所有可能的场景, 极具借鉴意义.
+为了快速规避可能的不良影响, 我转到了 `kubectl patch`.
+在事后翻阅文档时, 可以明显的感受到 k8s 的 patch 基本考虑并处理了所有可能的场景, 极具借鉴意义.
 
-部分更新是一个常见而复杂的问题, HTTP PATCH 就是典型的部分更新, 有一些实现会将 HTTP PUT 也实现成部分更新.
-虽然业界对部分更新有比较充分的讨论, 但很多实现者都会忽略这些现成的结果而自行设计, 导致重复的问题重复出现.
+部分更新, partial modification, 是一个常见而复杂的问题, HTTP PATCH 就是典型的部分更新语义,
+一些实现会将 HTTP PUT 也实现成部分更新.
+虽然业界对部分更新有充分而详细的讨论, 但很多实现者依然会忽略这些现成的结论而自行设计, 导致重复的问题重复出现.
 
 ## 部分更新的典型问题
-我们假设已经存在一个资源 patch-demo, 来讨论部分更新的几种典型问题.
+我们假设已经存在一个资源 busybox-demo, 来讨论部分更新的典型问题.
 ```yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -46,15 +47,14 @@ spec:
   replicas: 2
 ```
 
-- 如何把 replicas 更新为 0
+而困难的点, 一方面在于如何把 replicas 更新为 0.
 是仅需要把 replicas 设置为 0, 还是需要把 replicas 设置 null.
 server 会不会错误的把 key 不存在理解为更新为 0?
-
 很多实现没有明确而清晰的考虑零值的问题, 导致实现使用中出现歧义.
 
-- 是否允许对数组进行部分更新? 怎么标识同一元素? 怎么标识某一元素的删除?
-在 [JSON PATCH](https://tools.ietf.org/html/rfc6902) 中是无法对数组做部分更新,
-这需要额外的工作.
+另一方面在于是否允许对数组进行部分更新? 怎么标识同一元素? 怎么标识某一元素的删除?
+在 [JSON Merge PATCH](https://datatracker.ietf.org/doc/html/rfc7386) 中是无法对数组做部分更新,
+这需要一些额外的工作.
 
 ### strategic
 `kubectl patch` 提供了三种部分更新的策略, strategic 是默认选项.
@@ -106,9 +106,9 @@ k8s 提供 strategic 的主要目的是为了实现数组的部分更新.
 k8s 在文档中定义了两个注解: patchStrategy 和 patchMergeKey,
 以 [PodSpec.Containers](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#podspec-v1-core) 为例.
 patchStrategy 为 merge, 代表 k8s 会尝试将已有的数组和请求中的数组进行合并.
-而 patchMergeKey 则指定了数组合并时用来判断数组元素是否相同的字段.
+而 patchMergeKey 则指定了数组合并时用来判断数组元素是否相同的字段, 在此为 name.
 
-比如说, 我们可以通过如下的方式去修改和新增容器.
+所以, 我们可以通过如下的方式去修改和新增容器.
 ```shell
 ➜ k get -n default deploy busybox-demo -o json | jq '.spec.template.spec.containers[]'
 {
