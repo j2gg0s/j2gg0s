@@ -1,0 +1,13 @@
+spec:
+  template:
+    spec:
+      containers:
+      - name: busybox
+        resources:
+          requests:
+            cpu: 500m
+      - name: busybox-add
+        image: busybox:1.28
+        args:
+        - sleep
+        - "3600"

@@ -1,0 +1,9 @@
+spec:
+  template:
+    spec:
+      containers:
+      - name: busybox-add
+        image: busybox:1.28
+        args:
+        - sleep
+        - "3600"
