@@ -35,12 +35,12 @@ pytorch 向 GPU 申请的 Block 大小并不固定, 受当时用户请求内存�
 `trigger_free_memory_callbacks` 的回收过程会将相邻的空闲 Block 合并, 提高后续分配的灵活性.
 
 相较于其他内存管理机制, pytorch 的内存管理相对简略:
-- pytorch 回收 Block, 只尝试合并相邻的空闲的 Block, 并不会进行搬运操作来出来不相连的空闲 Block
-- 一旦 Block 被分割, 则 pytorch 无法将其释放. cudaMalloc 和 cudaFree 是对称的.
+- pytorch 回收 Block, 只尝试合并相邻的空闲的 Block, 并不会进行搬运操作来处理不相连的空闲 Block
+- 一旦 Block 被分割, 则 pytorch 无法将其释放. cudaMalloc 和 cudaFree 是对称的, 你无法仅释放某次分配的一部分内存.
 
 上述的两点, 造成了 pytorch 可能因为 Block 碎片化, 导致大量内存无法被使用.
 
-假设在某次分配内存是, pytorch 根据用户请求向 GPU 申请了一个 256M 的 Block.\
+假设在某次分配内存时, pytorch 根据用户请求向 GPU 申请了一个 256M 的 Block.\
 <-------------------------- 256M ----------------------------->
 
 经过多次分配和回收, 其使用情况可能变成如下.\
@@ -48,7 +48,7 @@ pytorch 向 GPU 申请的 Block 大小并不固定, 受当时用户请求内存�
 
 此时如果用户申请 160M 内存:
 - 虽然空闲的总内存大于 160M, 但是因为没有大于 160M 的 Block, 所以无法分配
-- pytorch 又无法将空闲的 100M+100M 内存返回给 GPU, 导致也无法向 GPU 申请 160M 内存.
+- pytorch 也无法将空闲的 100M+100M 内存返回给 GPU, 导致也无法向 GPU 申请 160M 内存.
 
 ## max_split_size_mb 的作用
 max_split_size_mb 的作用在于禁止 pytorch 对任何大于该大小的 Block 进行分割操作, 从而控制碎片化的程度.
@@ -69,4 +69,4 @@ pytorch 最新(>v2.0.1)的master分支中添加了 [Expandable Segments](https:/
 - [Basic things you might not know: How to avoid CUDA OUT OF MEMORY?](https://civitai.com/articles/194/basic-things-you-might-not-know-how-to-avoid-cuda-out-of-memory)
 - [通过设置PYTORCH_CUDA_ALLOC_CONF中的max_split_size_mb解决Pytorch的显存碎片化导致的CUDA:Out Of Memory问题](https://blog.csdn.net/MirageTanker/article/details/127998036)
 - [一文读懂 PyTorch 显存管理机制](https://zhuanlan.zhihu.com/p/486360176)
-- [Memory management](https://pytorch.org/docs/stable/notes/cuda.html#memory-management)
+- [pytorch's Memory management](https://pytorch.org/docs/stable/notes/cuda.html#memory-management)
