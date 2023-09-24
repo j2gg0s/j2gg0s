@@ -1,4 +1,3 @@
-examples/goasm/main
-examples/goasm/objdump
-examples/goasm/goobjdump
-examples/goasm/**
+**/main
+**/objdump
+**/goobjdump
