@@ -1,8 +1,6 @@
 Go 在 Plan9 的基础上定义了自己的汇编语言.
 代码经过编译后会生成对应的汇编语言, 随后根据目标平台生成精确的, 机器相关的指令.
-
-具体可以参见 [A Quick Guide to Go's Assembler][]:
-> The assembler is based on the input style of the Plan 9 assemblers, which is documented in detail elsewhere. If you plan to write assembly language, you should read that document although much of it is Plan 9-specific. The current document provides a summary of the syntax and the differences with what is explained in that document, and describes the peculiarities that apply when writing assembly code to interact with Go.
+具体可以参见 [A Quick Guide to Go's Assembler][].
 
 作为一个编译的门外汉来了解 Go 的编译逻辑的一个问题就是 Plan9 的资料稀缺,
 导致理解 Go 的汇编结果时很容易卡在某个点.
@@ -116,7 +114,7 @@ cat -n objdump | grep "<main.sum>:" -A 30
 129382  ;               sum += numbers[i]
 129383    4576d2: 48 01 f2                      addq    %rsi, %rdx
 129384  ;       for i := 0; i < len(numbers); i++ {
-129385    4576d5: 48 39 cb                      cmpq    %rcx, %rbx          ; 判断 i < len(numbers)
+129385    4576d5: 48 39 cb                      cmpq    %rcx, %rbx          ; 判断 i < len(numbers), rbx 保存了数组大小, 由调用者赋值
 129386    4576d8: 7f f1                         jg      0x4576cb <main.sum+0xb>
 129387  ;       return sum
 129388    4576da: 48 89 d0                      movq    %rdx, %rax          ; 返回结果需要存储在 rax
@@ -186,8 +184,10 @@ cat -n objdump | grep "<main.main>:" -A 60
 
 细心的同学可能会思考为什么调用 main.sum 之前初始化数组是用 24(%rsp). 这是因为虽然 go's calling convention 已经从
 stack-base 切换到了 regisger-base. 但是可能出于兼容或者上面目的, 依然在 stack 为通过 register 传递的参数和返回值保留空间.
+
 Ref [Function call argument and result passing](https://go.googlesource.com/go/+/refs/heads/dev.regabi/src/cmd/compile/internal-abi.md#function-call-argument-and-result-passing):
-< Beyond the arguments and results passed on the stack, the caller also reserves spill space on the stack for all register-based arguments (but does not populate this space).
+
+> Beyond the arguments and results passed on the stack, the caller also reserves spill space on the stack for all register-based arguments (but does not populate this space).
 
 对应的 Go 汇编:
 ```
@@ -223,3 +223,4 @@ cat -n goobjdump | grep "TEXT main.main" -A 1000
 [Introduction to the Go Compiler]: https://github.com/golang/go/tree/go1.17.13/src/cmd/compile
 [X64 Cheat Sheet]: https://cs.brown.edu/courses/cs033/docs/guides/x64_cheatsheet.pdf
 [Go internal ABI specification]: https://go.googlesource.com/go/+/refs/heads/dev.regabi/src/cmd/compile/internal-abi.md
+[A Quick Guide to Go's Assembler]: https://go.dev/doc/asm
