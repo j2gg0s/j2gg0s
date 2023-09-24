@@ -219,7 +219,6 @@ cat -n goobjdump | grep "TEXT main.main" -A 1000
  82892    main.go:25            0x457745                eb99                    JMP main.main(SB)
 ```
 
-## Reference
 [Introduction to the Go Compiler]: https://github.com/golang/go/tree/go1.17.13/src/cmd/compile
 [X64 Cheat Sheet]: https://cs.brown.edu/courses/cs033/docs/guides/x64_cheatsheet.pdf
 [Go internal ABI specification]: https://go.googlesource.com/go/+/refs/heads/dev.regabi/src/cmd/compile/internal-abi.md
