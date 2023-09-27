@@ -7,6 +7,7 @@ func max(a, b int) int {
 	if a > b {
 		return a
 	}
+	panic(nil)
 	return b
 }
 
@@ -14,6 +15,9 @@ func max(a, b int) int {
 func sum(numbers []int) int {
 	sum := 0
 	for i := 0; i < len(numbers); i++ {
+		defer func() {
+			fmt.Println(1)
+		}()
 		sum += numbers[i]
 	}
 	return sum
@@ -34,6 +38,5 @@ func add(a, b int) int {
 }
 
 func main() {
-	add(10, 20)
 	max(10, 20)
 }
