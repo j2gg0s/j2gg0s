@@ -2,18 +2,13 @@
 
 当前 Go 实现 defer 机制的方式有三种: open coded, stack allocated 和 heap allocated.
 
-Open coded 指在编译时, 将 defer 直接插入函数返回的位置, 性能上和直接调用基本一致.
+Open coded 指在编译时, 将 defer 直接插入函数返回的位置, 和直接调用相比也基本没有额外的开销.
 
 Stack allocated 和 heap allocated 类似.
 首先都是在遇到 defer 时将其保存到当前 goroutine.
 随后在函数返回的位置插入对 runtime.deferreturn 的调用, 该函数按照先进后出的顺序执行当前 goroutine 的 defer 函数.
 二者的区别在于前者在插入 defer 时使用栈上空间, 性能损失小;
 后者使用推上空间, 有巨大的性能成本.
-
-从 [Proposal: Low-cost defers through inline code, and extra funcdata to manage the panic case][] 来看, defer 在 Go 中的实现方式有三种:
-- open coded, 即在汇编中, 直接将 defer 插入对应的退出/返回的位置, 性能上和直接调用基本没有区别
-- stack-allocated, defer 被保存在栈, 编译时在返回处插入对 runtime.deferreturn 的调用, 有轻微的性能损失
-- heap-allocated, 与 stack-allocated 的区别在于, defer 被保存在堆, 导致有明显的调用成本
 
 ## open coded
 [相关设计文档](https://go.googlesource.com/proposal/+/refs/heads/master/design/34481-opencoded-defers.md)
@@ -113,7 +108,7 @@ func max(a, b int) int {
   47ae7b: 48 83 c4 20                  	addq	$32, %rsp
   47ae7f: 5d                           	popq	%rbp
   47ae80: c3                           	retq
-  47ae81: e8 5a 47 fb ff               	callq	0x42f5e0 <runtime.deferreturn>  ; retq 之后的这部分配合 panic, 具体后续展开
+  47ae81: e8 5a 47 fb ff               	callq	0x42f5e0 <runtime.deferreturn>  
   47ae86: 48 8b 44 24 08               	movq	8(%rsp), %rax
   47ae8b: 48 83 c4 20                  	addq	$32, %rsp
   47ae8f: 5d                           	popq	%rbp
@@ -130,10 +125,8 @@ func max(a, b int) int {
 
 ## stack allocated
 Open coded 的弊端是可能造成汇编代码的体积膨胀, 所以 Go 会自主判断是否要降级到 stack allocated.
-比如说当 defer 的数量超过 8 个时, 就会降级到 stack allocated.
-
-此时:
-- defer 被保存在当前 goroutine 的变量 _defer, 一个链表
+比如说当 defer 的数量超过 8 个时, 就会降级到 stack allocated. 此时:
+- defer 被保存在当前 goroutine 的变量 _defer 内, 一个链表
 - 编译时遇到 defer, 则插入对 runtime.deferprocStack 的调用, 将 defer 插入到 g._defer 的队首
 - 编译时在函数的返回处都插入对 runtime.deferreturn 的调用, 该函数会执行当前 goroutine 的 defer.
 
@@ -181,7 +174,7 @@ type _defer struct {
 此时倒着看这部分汇编会更容易理解:
 - `callq	0x42f000 <runtime.deferprocStack>` 调用 deferprocStack
 - `leaq	448(%rsp), %rax` 在调用前将参数保存到 rax
-- `movq	%rcx, 472(%rsp)` _defer 的开头在 448, 472 是编译了 24 字节, 对应字段为 fn, 所以此处的含义是将 rcx 赋值给 _defer.fn
+- `movq	%rcx, 472(%rsp)` _defer 的开头在 448, 472 是偏移了 24 字节, 对应字段为 fn, 所以此处的含义是将 rcx 赋值给 _defer.fn
 - `leaq	136843(%rip), %rcx      # 0x49c4e8 <go:func.*+0x220>` 将 defer 函数的地址加载到 rcx
 
 此时回头去看 open coded 下的 leaq 也可以理解, 保留的原因是因为 GC?
