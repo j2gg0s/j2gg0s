@@ -38,5 +38,6 @@ func add(a, b int) int {
 }
 
 func main() {
+	add(10, 20)
 	max(10, 20)
 }
