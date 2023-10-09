@@ -1,7 +1,7 @@
 Go 并没有 try-catch 这样的语法, 捕获 panic, 依赖 defer 和 recovery 的配合.
 
-从下面的例子, 我们首先可以明确, panic 是通过 runtime.gopanic 实现的.
-runtime.gopanic 唯一的参数类型是 any, 所以需要占用两个寄存器来传递参数.
+我们首先明确, panic 是通过 runtime.gopanic 实现的.
+runtime.gopanic 唯一的参数类型是 any, 需要占用两个寄存器来传递参数.
 ```
 192471          panic(nil)
 192472    47ae0e:       31 c0                   xor    %eax,%eax
@@ -9,15 +9,18 @@ runtime.gopanic 唯一的参数类型是 any, 所以需要占用两个寄存器�
 192474    47ae12:       e8 e9 52 fb ff          call   430100 <runtime.gopanic>
 ```
 
-当前 defer 有两种实现机制, open-coded 和 stack(/heap)-allocated.
+当前 defer 有三种实现机制, open-coded, stack-allocated 和 heap-allocated.
+stack-allocated 和 heap-allocated 在处理 panic 时逻辑基本等同.
 
 stack-allocated 首先通过调用 runtime.deferprocStack 将 defer 函数保存到 goroutine,
 随后在函数返回前插入对 runtime.deferreturn 的调用, 以先进后出的方式执行插入的 defer 函数.
+在处理 panic 时, 仅需要直接遍历 goroutine 中保存相关记录的变量即可.
 
-open-coded 通过在汇编中直接插入调用的方式极大的提高了 defer 的性能,
-代价之一是复杂化了 panic 的处理.
+open-coded 通过在汇编中直接插入调用来大幅提高 defer 的性能,
+代价之一是复杂化了 panic 的处理. 具体可以参见
+[Proposal: Low-cost defers through inline code, and extra funcdata to manage the panic case](https://go.googlesource.com/proposal/+/refs/heads/master/design/34481-opencoded-defers.md).
 
-open-coded 方案下, 编译器用一块内存保存了:
+open-coded 方案下, 编译器需要用一块内存保存了:
 - deferBits, 每个 defer 函数是否已经被执行
 - nDefers, defer 函数的数量
 - 每个 defer 函数和参数的地址
@@ -43,7 +46,7 @@ for u.initAt(pc, uintptr(sp), 0, gp, 0); u.valid(); u.next() {
 }
 ```
 其次是执行 open defer 的相关代码, [runOpenDeferFrame](https://github.com/golang/go/blob/go1.21.1/src/runtime/panic.go#L749)
-```
+```go
 func runOpenDeferFrame(d *_defer) bool {
 	done := true
 	fd := d.fd
@@ -99,7 +102,7 @@ func runOpenDeferFrame(d *_defer) bool {
 192507          }()
 ```
 
-recover 对应的 runtime.gorecover, 返回保存在 goroutine 的 _panic 变量.
+recover 对应的是 runtime.gorecover, 函数会返回保存在 goroutine 的 _panic 变量.
 ```
 192589                  r := recover()
 192590    47af40:       e8 fb 58 fb ff          call   430840 <runtime.gorecover>
