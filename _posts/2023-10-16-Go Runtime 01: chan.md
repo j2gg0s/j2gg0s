@@ -1,6 +1,6 @@
 传统的线程模型通过共享内存来实现多个线程之间的相互交流.
-大多数时候需要精妙的设计, 依赖锁等机制来保证正确性.
-而 Go 通过 chan 推广另外一种方式:
+依赖精妙的设计和锁等机制来保证程序的正确性.
+而 Go 通过 chan 推广了另外一种模式, 即
 > Do not communicate by sharing memory; instead, share memory by communicating.
 
 通过汇编代码, 我们可以快速的定位到 chan 相关的函数:
@@ -53,16 +53,16 @@
 138067  }
 ```
 
-chan 在 runtime 中对应结构体 hchan, 其中
+chan 在 runtime 中对应结构体 hchan, 其中比较直接的包括:
 - elemtype 对应元素类型信息, 编译时产生
 - elemsize 对应元素占用的内存大小
 - dataqsiz 是最多可以缓存元素的数量, 即 `make(chan int, 2)` 中的 2
 - closed 非 0 代表 chan 已被关闭
 
-makechan 时会直接申请需要的内存, 即变量 buf, 大小由单个元素的大小(elemsize)和缓存数量(dataqsize)决定.
+makechan 会直接申请需要的内存, 即变量 buf, 大小由单个元素的大小(elemsize)和缓存数量(dataqsize)决定.
 元素会以环形队列的形式保存在 buf 中, qcount 是队列中元素的数量, sendx 是队首元素的坐标, recvx 是队尾元素的坐标.
 
-将发送的元素保存在的缓存队列中 [chan.go#L216](https://github.com/golang/go/blob/go1.21.1/src/runtime/chan.go#L216):
+将发送的元素保存在的缓存队列中代码 [chan.go#L216](https://github.com/golang/go/blob/go1.21.1/src/runtime/chan.go#L216):
 ```go
 if c.qcount < c.dataqsiz {
     // Space is available in the channel buffer. Enqueue the element to send.
@@ -80,7 +80,7 @@ if c.qcount < c.dataqsiz {
     return true
 }
 ```
-接收时直接从缓存队列中获取元素 [chan.go#L537](https://github.com/golang/go/blob/go1.21.1/src/runtime/chan.go#L537):
+接收时直接从缓存队列中获取元素的代码 [chan.go#L537](https://github.com/golang/go/blob/go1.21.1/src/runtime/chan.go#L537):
 ```go
 if c.qcount > 0 {
 	// Receive directly from queue
@@ -102,8 +102,8 @@ if c.qcount > 0 {
 }
 ```
 
-sendq 和 recvq 时两个 goroutine 队列, 前者保存了阻塞在发消息上的 goroutine, 后者保存了等待接收销售的 goroutine.
-在发送和接收消息时, 都会优先判断是否由等待的 goroutine, 如果由则不需要再经过 buf 中转一道了.
+sendq 和 recvq 是两个 goroutine 队列, 前者保存了阻塞在发消息上的 goroutine, 后者保存了等待接收消息的 goroutine.
+在发送和接收消息时, 都会优先判断是否由等待的 goroutine, 避免需要额外经过缓存中转一次.
 ```go
 if sg := c.recvq.dequeue(); sg != nil {
     // Found a waiting receiver. We pass the value we want to send
