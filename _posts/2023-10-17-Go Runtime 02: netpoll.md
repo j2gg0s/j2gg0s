@@ -1,22 +1,27 @@
 最近重看 Go 的 runtime 的时候发现了
-[netpoll.go](https://github.com/golang/go/blob/go1.21.1/src/runtime/netpoll.go),
-很佩服自己的主动过滤系统.
+[netpoll.go](https://github.com/golang/go/blob/go1.21.1/src/runtime/netpoll.go).
+以为时最近加入的内容, 但 git blame 下却发现时很早以前就存在了.
+非常佩服自己的主动过滤系统.
 
 netpoll 是 Go 是对不同平台 IO 的封装, 比如 Linux's 的 epoll.
 一方面是和其他语言的三方库一样, 简化上游使用者的心智负担.
-另一方是实现在 runtime, 可以和 GMP 调度模型高度结合, 尽可能的高效.
+另一方, 通过实现在 runtime, 和 GMP 调度模型高度结合, 尽可能的提高效率.
 
 ## IO 相关的基础知识
 我们首先明确两组属性.
-阻塞和非阻塞 IO, 前者指调用者阻塞在套接字上直到有数据可以读取/写入,
-后者指在没有数据可以读取/无法写入数据时调用直接返回, 由调用者采用轮训等方法决定处理方式.
-同步和异步 IO, 前者指调用直接生效并返回结果,
+
+阻塞和非阻塞 IO, 前者指调用阻塞在套接字上直到有数据可以读取/写入,
+后者指在没有数据可以读取/无法写入数据时调用直接返回, 需要由调用者采用轮训等方法决定处理方式.
+
+同步和异步 IO, 前者指调用直接生效, 执行完后返回结果,
 后者指调用立刻返回, 但具体工作后续执行, 结果通过某种方式通知调用者.
 
-Linux 的套接字(socket) 即支持阻塞模式也支持非阻塞模式, 可以在创建时通过参数指定,
+Linux 的套接字(socket) 即支持阻塞模式也支持非阻塞模式, 可以在创建时通过参数指定.
 但一般是同步的, 异步 socket 似乎在 windows 中比较流行.
+
 而诸如 Nginx 这类网关需要同时处理成千上万的链接, 创建对等数量的线程阻塞在链接上是不现实的,
-他们一般会选择同步非阻塞 IO, 配合轮训来让一个线程处理上百, 上千个链接.
+他们一般会选择同步非阻塞 IO, 配合轮训来让一个线程处理成百上千个链接.
+
 但 IO 操作一般是系统调用，涉及内核态到系统态的转换, 异常昂贵.
 所以我们通过多路复用, 实现一次调用操作多个套接字来减少对系统 API 的调用.
 这在 Linux 上对应 select/poll/epoll, 前两者需要在轮训是传入所有关注的套接字, 导致高昂的内存成本.
@@ -60,7 +65,7 @@ func (fd *netFD) Read(p []byte) (n int, err error) {
 
 `internal/poll.FD` 是对 `runtime/netpoll.go` 的抽象和封装,
 `FD.Read` 内部首先尝试直接读取数据, 如果没有则阻塞在套接字上, 等待数据到达后触发下一次尝试.
-阻塞在没有数据的套接字上直到数据到来通过 `runtime.pollWait` 实现.
+阻塞这个操作通过 `runtime.pollWait` 实现.
 ```go
 // Read implements io.Reader.
 func (fd *FD) Read(p []byte) (int, error) {
@@ -146,12 +151,13 @@ func (fd *FD) Init(net string, pollable bool) error {
 ## netpoll 的实现
 在上一节中, 我们通过 Read 已经明确 netpoll 的使用方式:
 - 通过 runtime.pollOpen 将套接字注册到 netpoll
-- 通过 runtime.pollWait 让出 CPU 的使用权直到由数据到达
+- 通过 runtime.pollWait 让出 CPU 的使用权直到数据到达
+
 这些函数都在 [runtime/netpoll.go](https://github.com/golang/go/blob/master/src/runtime/netpoll.go), 包含了 netpoll 的逻辑代码.
 [runtime/netpoll_epoll.go](https://github.com/golang/go/blob/master/src/runtime/netpoll_epoll.go) 则是对 epoll 相关的系统调用的简单封装.
 
 netpoll 的核心逻辑在 pollDesc 的状态字段 rg&wg.
-rg 可能有四种可能的值:
+字段可能有四种值:
 - pdReady, 代表此时句柄可读
 - pdWait, 即将有 goroutine 阻塞在句柄上
 - 指向 goroutine 的指针, 代表阻塞在句柄上的 goroutine
