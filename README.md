@@ -1,3 +1,7 @@
 Backend develpoer, writes go with vim, for work and life. 
 
-Focus on kubernetes, istio and envoy.
+Focus && Interests
+- Go
+- Kubernetes
+- Istio and Envoy
+- Kafka Connect, specially debezium sink
