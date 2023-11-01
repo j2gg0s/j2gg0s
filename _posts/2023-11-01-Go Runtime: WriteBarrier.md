@@ -44,12 +44,15 @@ cat -n objdump | grep -A 100 "main.main>:"
 ```
 其逻辑是:
 - 通过全局变量 runtime.writeBarrier 判断是否开启了 write barrier
+
   [runtime.writeBarrier](https://github.com/golang/go/blob/go1.21.1/src/runtime/mgc.go#L215) 是一个全局变量,
   在进入标记段前开启, 进入清除阶段前关闭.
 
 - 如果开启了, 则调用 runtime.gcWriteBarrier2 将对象保存到当前的 p, GMP 中的 p
+
   [runtime.gcWriteBarrier2](https://github.com/golang/go/blob/go1.21.1/src/runtime/asm_amd64.s#L1769)
   是直接以会编实现的函数, 会将寄存器 AX 内的指针保存到 p.wbbuf.
 
 - 标记阶段结束时, GC 会额外处理这些对象
+
   在结束标记前, GC 会为调用 [wbBufFlush](https://github.com/golang/go/blob/go1.21.1/src/runtime/mwbbuf.go#L166) 处理这缓存的对象.
