@@ -1,14 +1,14 @@
 在过去的这些年, K8s 参与并推动了两个容器相关的标准.
 
 一个是挂在 [OCI](https://opencontainers.org/) 下的 [runtime-spec](https://github.com/opencontainers/runtime-spec),
-定义并规范了容器运行的方方面面. 依赖于此我们使用 K8s 是可以自由选择底层的容器运行时实现而不影响上层使用.
+定义并规范了容器运行的方方面面. 依赖于此我们使用 K8s 时可以自由选择底层的容器运行时实现而不影响上层功能.
 
 另一个是 [CNI (Container Network Interface)](https://github.com/containernetworking/cni),
 定义了容器运行时如何管理容器网络.
-在这个标准下开发的各类插件都可以直接在容器运行时中使用, 不再需要容器运行时进行适配.
+在这个标准下开发的各类插件都可以直接在容器运行时中使用, 不再需要双方适配.
 
 ## CNI 速览
-CNI 中由两个关键角色, 一是容器运行时, 一是各类网络插件.
+CNI 中有两个关键角色, 一是容器运行时, 一是各类网络插件.
 容器运行时负责在容器创建和销毁时, 根据配置调用指定插件的 ADD 和 DEL 命令.
 
 同时, 比较有意义的点是:
@@ -24,8 +24,8 @@ Flannel 是一个简单但流行的容器网络方案, 其提供了一个 200 �
 具体参见 [kube-flannel.yaml](https://github.com/flannel-io/flannel/blob/master/Documentation/kube-flannel.yml#L106).
 
 部署的核心逻辑在于其中的 DaemonSet,
-其一方面通过两个 initContaienrs 将 CNI Plugin 和配置文件安装到宿主机.
-另一方面通过 flanneld, 处理路由转发逻辑.
+- 一方面通过两个 initContaienrs 将插件和配置文件复制到宿主机.
+- 一方面通过 flanneld 监听节点信息, 处理路由转发逻辑.
 
 ### flannel-cni
 容器运行时根据配置文件调用 [flannel-cni](https://github.com/flannel-io/cni-plugin) 后,
