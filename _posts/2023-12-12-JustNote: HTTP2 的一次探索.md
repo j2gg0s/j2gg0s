@@ -18,7 +18,7 @@ HTTP/2 是一次兼容 HTTP/1.1 的大升级,
 虽然 HTTP/2 自身并不依赖 TLS, 但绝大多数的实现 (Chrome/Firfox/GoLang) 都强制要求 HTTP/2 使用 TLS.
 我们一般将基于 ALPN, 使用了 TLS 加密的 HTTP/2 简称为 h2.
 
-于 h2 相对的是 h2c, HTTP/2 over cleartext TCP, 直接使用 TCP 的 HTTP/2.
+与 h2 相对的是 h2c, HTTP/2 over cleartext TCP, 直接使用 TCP 的 HTTP/2.
 h2c 中, 客户端直接在请求头中设置 Upgrade 为 h2c.
 和 websocket 类似, 服务端如果直接 h2c, 则直接返回 101.
 
