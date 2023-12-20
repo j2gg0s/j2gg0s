@@ -1,5 +1,5 @@
 ### Go's Entry Point
-由于偷懒没有细看 Go 的编译逻辑, 所以在大多数时候我需要通过反汇编来确定一些逻辑, 比如说 Go 应用的入口.
+由于偷懒没有细看 Go 的编译逻辑, 所以在大多数时候我需要通过反汇编来确定一些事情, 比如说 Go 应用的入口.
 
 Go 在 Linux 下的编译结果是 [ELF](https://en.wikipedia.org/wiki/Executable_and_Linkable_Format) 文件,
 在 osx 中可以通过 brew 安装 readelf/objdump 等工具来解读.
@@ -36,6 +36,9 @@ TEXT _rt0_amd64_linux(SB),NOSPLIT,$-8
 ### stack
 每个 goroutine 都拥有自己独立的栈, 初始空间小(2kb), 后续按需扩容.
 g 除了保存当前栈的最高(stack.hi)和最低(stack.lo)地址外, 还使用 stackguard0 来记录应该扩容的地址.
+考虑栈是从高位地址开始使用,
+stackguard0 = stack.lo + stackGuard 等价于预留一部分空间, 避免扩容等情况时的栈溢出.
+
 编译器会在可能需要扩容的函数调用中增加栈扩容的逻辑:
 ```shell
 ~ x86_64-linux-gnu-objdump -D -S main | cat -n - | grep -A 20 "main.main>:"
@@ -60,18 +63,22 @@ g 除了保存当前栈的最高(stack.hi)和最低(stack.lo)地址外, 还使�
 上述例子中:
 - rsp 保存了当前函数栈的地址, 即 SP
 - r14 保存了当前 g 的地址, 0x10 使其偏移 16 个字节, 对应 g.stackguard0
-- 如果当前栈的地址小于 stackguard0, 则存在溢出风险, 需要调用 runtime.morestack_noctxt 后再跳转回来.
+- L35 判断是否需要扩容
+- L36 在需要扩容的时候跳转到 L46
+- rutnime.morestack_noctxt 实现扩容
+- L47 在扩容结束后跳转回函数入口
+
 上述寄存器的含义可以参考 [Go internal ABI specification](https://go.googlesource.com/go/+/refs/heads/dev.regabi/src/cmd/compile/internal-abi.md#amd64-architecture).
 
 栈的空间分配由 stackalloc 实现, 在其中我们可以看到一些熟悉的内容.
 - 如果栈超过 32kb, 直接从 mheap 分配, 否则从 p 的缓存中分配.
-- 同一个 mspan 内的栈大小相同, 未分配栈空间维护成链表的形式.
+- 同一个 mspan 内的栈大小相同, 以便以链表的形式维护空闲的栈空间.
 
 当栈触发扩容或者缩容时, 运行时会分配一块新的空间并将内容都复制过去.
 其中复杂的地方在于如何处理指向原始栈空间的指针.
 
 由于编译器保证了[只有栈上的指针可以指向栈上的数据](https://docs.google.com/document/d/1wAaf1rYoM4S4gtnPh0zOlGzWtrZFQ5suE8qr2sD8uWQ/pub),
 所以我们只需要遍历栈空间, 找到每一个指向栈的指针并做偏移调整即可.
-由于 GC 的需要, 我们已经维护了特定地址是否是指针这一信息.
+特定地址是否时指针这一信息由 GC 维护, 我们直接在此处使用即可.
 
 可能违反上述保证的情况, 比如 defer, panic 和 chan 等需要被特殊处理.
