@@ -117,11 +117,11 @@ Strengthening or Weakening the Memory Ordering Model 相关章节指明了 XCHG/
 那么, Load 操作就可以直接用 MOV 来实现.
 
 ## Memory Model
-Memory Model 虽然是计算器中的一个重要概念, 但可能真的是绝大多数程序员无需关心的领域.
-虽然我们可能都无法彻底理解, 但是花一定时间树立一个大体正确的概念是一件很值得的事情.
-Russ Cox 为 Memory Model 写[三篇文章](https://research.swtch.com/mm)是比较好的入口.
+虽然 Memory Model 是计算机中的一个重要概念, 但可能真的是绝大多数程序员无需关心的领域.
+同时因其针对的主要是硬件(CPU)和编译器, 我们也很难彻底理解, 但是花时间树立一个大体正确的概念依然是一件很有价值的事情.
+Russ Cox 为 Memory Model 写的[三篇文章](https://research.swtch.com/mm)是一个不错的切入点.
 
-首先, Memory Model 并不指如何管理内存, 其定义的是多处理系统中, 不同处理器之间如何共享和同步内存.
+首先我们要注意, Memory Model 并不是指如何管理内存, 其定义的是多处理系统中, 不同处理器之间如何共享和同步内存.
 在下述例子中, 我们假设两个处理器分别运行如下的代码:
 ```
 // Thread 1             // Thread 2
@@ -129,13 +129,14 @@ x = 1;                  r1 = x;
 y = 1;                  r2 = y;
 ```
 那么 (r1, r2) 可能的结果是 (0, 0), (1, 0), (1, 1), (0, 1).
-对, 在没有明确 CPU 和编译器的 Memory Model 时, (0, 1) 也是有可能的.
+在没有明确 CPU 和编译器的 Memory Model 时, (0, 1) 也是有可能的.
 CUP/编译器的重排指令都可能导致最终结果为 (0, 1).
-而当我们约定 Memory Model 为 Sequential Consistency(SC) 时, r1=0&&r2=1 就是一种不可能的结果.
+
+而当我们约定 Memory Model 为 Sequential Consistency(SC) 时, (0, 1) 就是一种不可能的结果.
 因为 SC 要求在所有处理器上观察到的内存操作顺序与单个处理器上的执行顺序一致.
 
-在现实世界中, CPU 为了更高的性能, 会选择比 SC 更宽松的内存模型.
-比如 x86 对应的就是 Total Store Order(TSO).
+现实世界中, CPU 为了更高的性能, 会选择比 SC 更宽松的内存模型,
+比如 Total Store Order(TSO).
 相对 SC, TSO 依然保证所有的写操作(Store)在所有处理器上观察到的顺序是一致的.
 但 TSO 并不保证, 读(Load)和写(Store)在不同处理器上观察到的顺序是一致的.
 在下面的例子中, r1=1&&r2=0 在 SC 中是不被允许的, 但在 TSO 中是可能出现的.
@@ -150,10 +151,10 @@ x86 等架构在实现 TSO 时, 基本都会为每个处理器维护一个 write
 允许用户主动清空 write buffer, 确保指令前的写操作对所有处理器可见.
 
 诸如 Java/C++/Go 等高级语言也会定义自己的的内存模型.
-Go 是保证在没有数据竞争的情况下保证 SC, 即 data-race-free sequential-consistency(DRF-SC).
+Go 在没有数据竞争的情况下保证 SC, 即 data-race-free sequential-consistency(DRF-SC).
 
-Data race 是指同时有两个以上的处理器访问同一个变量, 其中至少有一个是写操作.
-在下述的代码中, 就包括 data race:
+数据竞争是指同时有两个以上的处理器访问同一个变量, 其中至少有一个是写操作.
+在下述的代码中, 就包括 race:
 ```go
 package main
 
@@ -202,7 +203,8 @@ Goroutine 5 (finished) created at:
 ==================
 Found 1 data race(s)
 ```
-当存在 data race 时, Go 并不提供任何保证, 我们需要通过使用 lock/chan/atomic 等机制避免数据竞争.
+
+当存在数据竞争时, Go 并不提供任何保证, 我们需要通过使用 lock/chan/atomic 等机制避免数据竞争.
 一种方式是加锁保护数据.
 ```go
 package main
