@@ -12,6 +12,10 @@ func main() {
 	b := 20
 	c := 30
 
+	if !false {
+		fmt.Println(fmt.Sprintf("%t", a))
+	}
+
 	defer func() {
 		fmt.Println(a)
 	}()
@@ -26,4 +30,5 @@ func main() {
 		fmt.Println(c)
 	}()
 	doPanic()
+
 }
