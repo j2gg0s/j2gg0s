@@ -38,6 +38,7 @@ func main() {
 其中包括的点有:
 - Go 并不保证先启动的 goroutine 先执行
 - Go 中 for 循环的实现是 one-instance-per-loop, 而不是 one-instance-per-iteration.
+
 我们在下述例子中看到, i 和 v 的内存地址始终未曾改变:
 ```shell
 ~ cat main.go
