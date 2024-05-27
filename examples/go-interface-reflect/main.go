@@ -29,4 +29,5 @@ func main() {
 	for _, m := range []Mather{Mather(Inter{id: 6754}), Mather(Structer{7, "8"})} {
 		m.Add(10, 32)
 	}
+	any
 }
