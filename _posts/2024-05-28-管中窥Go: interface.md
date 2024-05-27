@@ -237,10 +237,10 @@ ok      github.com/j2gg0s/j2gg0s/examples/go-generic    2.834s
 复杂的是 interface 的 method dispatch.
 从 Russ Cox 的文章中, 我们可以理解转发表保存在 itab.fun, 并由 runtime 在运行时构建.
 但是从之前的例子来看, 依然存在的困惑点:
-- 何时&如何构建 itab.fun
-- 调用 main.getName 时并不能看到相关逻辑, 是编译器针对此类 case 直接填充了 itab.fun
+- 有谁触发并构建了 itab.fun
+- 调用 main.getName 时并不能看到相关逻辑, 是编译器针对此类 case 直接填充了?
 
-接单前一个问题, 我们可以构建一个 interface2interface 的例子.
+针对前一个问题, 我们构建一个 interface2interface 的例子来触发相关逻辑.
 ```shell
 ➜  go-generic git:(main) ✗ cat -n i2i.go
      1  package main
