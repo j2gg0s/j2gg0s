@@ -1,942 +1,437 @@
-main.User.GetName STEXT nosplit size=6 args=0x18 locals=0x0 funcid=0x0 align=0x0
-	0x0000 00000 (i2i.go:17)	TEXT	main.User.GetName(SB), NOSPLIT|NOFRAME|ABIInternal, $0-24
-	0x0000 00000 (i2i.go:17)	MOVQ	AX, main.u+8(FP)
-	0x0005 00005 (i2i.go:17)	FUNCDATA	$0, gclocals·wgcWObbY2HYnK2SU/U22lA==(SB)
-	0x0005 00005 (i2i.go:17)	FUNCDATA	$1, gclocals·J5F+7Qw7O7ve2QcWC7DpeQ==(SB)
-	0x0005 00005 (i2i.go:17)	FUNCDATA	$5, main.User.GetName.arginfo1(SB)
-	0x0005 00005 (i2i.go:17)	FUNCDATA	$6, main.User.GetName.argliveinfo(SB)
-	0x0005 00005 (i2i.go:17)	PCDATA	$3, $1
-	0x0005 00005 (i2i.go:17)	RET
-	0x0000 48 89 44 24 08 c3                                H.D$..
-main.User.GetAge STEXT nosplit size=9 args=0x18 locals=0x0 funcid=0x0 align=0x0
-	0x0000 00000 (i2i.go:18)	TEXT	main.User.GetAge(SB), NOSPLIT|NOFRAME|ABIInternal, $0-24
-	0x0000 00000 (i2i.go:18)	MOVQ	AX, main.u+8(FP)
-	0x0005 00005 (i2i.go:18)	FUNCDATA	$0, gclocals·wgcWObbY2HYnK2SU/U22lA==(SB)
-	0x0005 00005 (i2i.go:18)	FUNCDATA	$1, gclocals·J5F+7Qw7O7ve2QcWC7DpeQ==(SB)
-	0x0005 00005 (i2i.go:18)	FUNCDATA	$5, main.User.GetAge.arginfo1(SB)
-	0x0005 00005 (i2i.go:18)	FUNCDATA	$6, main.User.GetAge.argliveinfo(SB)
-	0x0005 00005 (i2i.go:18)	PCDATA	$3, $1
-	0x0005 00005 (i2i.go:18)	MOVQ	CX, AX
-	0x0008 00008 (i2i.go:18)	RET
-	0x0000 48 89 44 24 08 48 89 c8 c3                       H.D$.H...
-main.getName STEXT size=67 args=0x10 locals=0x10 funcid=0x0 align=0x0
-	0x0000 00000 (i2i.go:21)	TEXT	main.getName(SB), ABIInternal, $16-16
-	0x0000 00000 (i2i.go:21)	CMPQ	SP, 16(R14)
-	0x0004 00004 (i2i.go:21)	PCDATA	$0, $-2
-	0x0004 00004 (i2i.go:21)	JLS	40
-	0x0006 00006 (i2i.go:21)	PCDATA	$0, $-1
-	0x0006 00006 (i2i.go:21)	PUSHQ	BP
-	0x0007 00007 (i2i.go:21)	MOVQ	SP, BP
-	0x000a 00010 (i2i.go:21)	SUBQ	$8, SP
-	0x000e 00014 (i2i.go:21)	MOVQ	AX, main.i+24(FP)
-	0x0013 00019 (i2i.go:21)	MOVQ	BX, main.i+32(FP)
-	0x0018 00024 (i2i.go:21)	FUNCDATA	$0, gclocals·IuErl7MOXaHVn7EZYWzfFA==(SB)
-	0x0018 00024 (i2i.go:21)	FUNCDATA	$1, gclocals·J5F+7Qw7O7ve2QcWC7DpeQ==(SB)
-	0x0018 00024 (i2i.go:21)	FUNCDATA	$5, main.getName.arginfo1(SB)
-	0x0018 00024 (i2i.go:21)	FUNCDATA	$6, main.getName.argliveinfo(SB)
-	0x0018 00024 (i2i.go:21)	PCDATA	$3, $1
-	0x0018 00024 (i2i.go:21)	MOVQ	24(AX), CX
-	0x001c 00028 (i2i.go:21)	MOVQ	BX, AX
-	0x001f 00031 (i2i.go:21)	PCDATA	$1, $1
-	0x001f 00031 (i2i.go:21)	NOP
-	0x0020 00032 (i2i.go:21)	CALL	CX
-	0x0022 00034 (i2i.go:21)	ADDQ	$8, SP
-	0x0026 00038 (i2i.go:21)	POPQ	BP
-	0x0027 00039 (i2i.go:21)	RET
-	0x0028 00040 (i2i.go:21)	NOP
-	0x0028 00040 (i2i.go:21)	PCDATA	$1, $-1
-	0x0028 00040 (i2i.go:21)	PCDATA	$0, $-2
-	0x0028 00040 (i2i.go:21)	MOVQ	AX, 8(SP)
-	0x002d 00045 (i2i.go:21)	MOVQ	BX, 16(SP)
-	0x0032 00050 (i2i.go:21)	CALL	runtime.morestack_noctxt(SB)
-	0x0037 00055 (i2i.go:21)	MOVQ	8(SP), AX
-	0x003c 00060 (i2i.go:21)	MOVQ	16(SP), BX
-	0x0041 00065 (i2i.go:21)	PCDATA	$0, $-1
-	0x0041 00065 (i2i.go:21)	JMP	0
-	0x0000 49 3b 66 10 76 22 55 48 89 e5 48 83 ec 08 48 89  I;f.v"UH..H...H.
-	0x0010 44 24 18 48 89 5c 24 20 48 8b 48 18 48 89 d8 90  D$.H.\$ H.H.H...
-	0x0020 ff d1 48 83 c4 08 5d c3 48 89 44 24 08 48 89 5c  ..H...].H.D$.H.\
-	0x0030 24 10 e8 00 00 00 00 48 8b 44 24 08 48 8b 5c 24  $......H.D$.H.\$
-	0x0040 10 eb bd                                         ...
-	rel 2+0 t=24 type:main.Namer+96
-	rel 32+0 t=10 +0
-	rel 51+4 t=7 runtime.morestack_noctxt+0
-main.main STEXT size=124 args=0x0 locals=0x38 funcid=0x0 align=0x0
-	0x0000 00000 (i2i.go:23)	TEXT	main.main(SB), ABIInternal, $56-0
-	0x0000 00000 (i2i.go:23)	CMPQ	SP, 16(R14)
-	0x0004 00004 (i2i.go:23)	PCDATA	$0, $-2
-	0x0004 00004 (i2i.go:23)	JLS	117
-	0x0006 00006 (i2i.go:23)	PCDATA	$0, $-1
-	0x0006 00006 (i2i.go:23)	PUSHQ	BP
-	0x0007 00007 (i2i.go:23)	MOVQ	SP, BP
-	0x000a 00010 (i2i.go:23)	SUBQ	$48, SP
-	0x000e 00014 (i2i.go:23)	FUNCDATA	$0, gclocals·J5F+7Qw7O7ve2QcWC7DpeQ==(SB)
-	0x000e 00014 (i2i.go:23)	FUNCDATA	$1, gclocals·Zzj2FaoDzNrZlobEaq+Nzw==(SB)
-	0x000e 00014 (i2i.go:23)	FUNCDATA	$2, main.main.stkobj(SB)
-	0x000e 00014 (i2i.go:24)	MOVQ	$0, main..autotmp_1+24(SP)
-	0x0017 00023 (i2i.go:24)	MOVUPS	X15, main..autotmp_1+32(SP)
-	0x001d 00029 (i2i.go:24)	LEAQ	go:string."Foo"(SB), CX
-	0x0024 00036 (i2i.go:24)	MOVQ	CX, main..autotmp_1+24(SP)
-	0x0029 00041 (i2i.go:24)	MOVQ	$3, main..autotmp_1+32(SP)
-	0x0032 00050 (i2i.go:24)	MOVQ	$35, main..autotmp_1+40(SP)
-	0x003b 00059 (i2i.go:24)	LEAQ	type:<unlinkable>.User(SB), AX
-	0x0042 00066 (i2i.go:24)	LEAQ	main..autotmp_1+24(SP), BX
-	0x0047 00071 (i2i.go:24)	PCDATA	$1, $0
-	0x0047 00071 (i2i.go:24)	CALL	runtime.convT(SB)
-	0x004c 00076 (i2i.go:24)	MOVQ	AX, main..autotmp_7+16(SP)
-	0x0051 00081 (i2i.go:25)	LEAQ	go:itab.<unlinkable>.User,<unlinkable>.NamerAndAger(SB), BX
-	0x0058 00088 (i2i.go:25)	LEAQ	type:<unlinkable>.Namer(SB), AX
-	0x005f 00095 (i2i.go:25)	PCDATA	$1, $1
-	0x005f 00095 (i2i.go:25)	NOP
-	0x0060 00096 (i2i.go:25)	CALL	runtime.convI2I(SB)
-	0x0065 00101 (i2i.go:25)	MOVQ	main..autotmp_7+16(SP), BX
-	0x006a 00106 (i2i.go:25)	PCDATA	$1, $0
-	0x006a 00106 (i2i.go:25)	CALL	main.getName(SB)
-	0x006f 00111 (i2i.go:26)	ADDQ	$48, SP
-	0x0073 00115 (i2i.go:26)	POPQ	BP
-	0x0074 00116 (i2i.go:26)	RET
-	0x0075 00117 (i2i.go:26)	NOP
-	0x0075 00117 (i2i.go:23)	PCDATA	$1, $-1
-	0x0075 00117 (i2i.go:23)	PCDATA	$0, $-2
-	0x0075 00117 (i2i.go:23)	CALL	runtime.morestack_noctxt(SB)
-	0x007a 00122 (i2i.go:23)	PCDATA	$0, $-1
-	0x007a 00122 (i2i.go:23)	JMP	0
-	0x0000 49 3b 66 10 76 6f 55 48 89 e5 48 83 ec 30 48 c7  I;f.voUH..H..0H.
-	0x0010 44 24 18 00 00 00 00 44 0f 11 7c 24 20 48 8d 0d  D$.....D..|$ H..
-	0x0020 00 00 00 00 48 89 4c 24 18 48 c7 44 24 20 03 00  ....H.L$.H.D$ ..
-	0x0030 00 00 48 c7 44 24 28 23 00 00 00 48 8d 05 00 00  ..H.D$(#...H....
-	0x0040 00 00 48 8d 5c 24 18 e8 00 00 00 00 48 89 44 24  ..H.\$......H.D$
-	0x0050 10 48 8d 1d 00 00 00 00 48 8d 05 00 00 00 00 90  .H......H.......
-	0x0060 e8 00 00 00 00 48 8b 5c 24 10 e8 00 00 00 00 48  .....H.\$......H
-	0x0070 83 c4 30 5d c3 e8 00 00 00 00 eb 84              ..0]........
-	rel 2+0 t=23 type:main.User+0
-	rel 32+4 t=14 go:string."Foo"+0
-	rel 62+4 t=14 type:<unlinkable>.User+0
-	rel 72+4 t=7 runtime.convT+0
-	rel 84+4 t=14 go:itab.<unlinkable>.User,<unlinkable>.NamerAndAger+0
-	rel 91+4 t=14 type:<unlinkable>.Namer+0
-	rel 97+4 t=7 runtime.convI2I+0
-	rel 107+4 t=7 main.getName+0
-	rel 118+4 t=7 runtime.morestack_noctxt+0
-type:.eq.<unlinkable>.User STEXT dupok size=86 args=0x10 locals=0x20 funcid=0x0 align=0x0
-	0x0000 00000 (<autogenerated>:1)	TEXT	type:.eq.<unlinkable>.User(SB), DUPOK|ABIInternal, $32-16
-	0x0000 00000 (<autogenerated>:1)	CMPQ	SP, 16(R14)
-	0x0004 00004 (<autogenerated>:1)	PCDATA	$0, $-2
-	0x0004 00004 (<autogenerated>:1)	JLS	59
-	0x0006 00006 (<autogenerated>:1)	PCDATA	$0, $-1
-	0x0006 00006 (<autogenerated>:1)	PUSHQ	BP
-	0x0007 00007 (<autogenerated>:1)	MOVQ	SP, BP
-	0x000a 00010 (<autogenerated>:1)	SUBQ	$24, SP
-	0x000e 00014 (<autogenerated>:1)	FUNCDATA	$0, gclocals·TjPuuCwdlCpTaRQGRKTrYw==(SB)
-	0x000e 00014 (<autogenerated>:1)	FUNCDATA	$1, gclocals·J5F+7Qw7O7ve2QcWC7DpeQ==(SB)
-	0x000e 00014 (<autogenerated>:1)	FUNCDATA	$5, type:.eq.<unlinkable>.User.arginfo1(SB)
-	0x000e 00014 (<autogenerated>:1)	FUNCDATA	$6, type:.eq.<unlinkable>.User.argliveinfo(SB)
-	0x000e 00014 (<autogenerated>:1)	PCDATA	$3, $1
-	0x000e 00014 (<autogenerated>:1)	MOVQ	8(AX), CX
-	0x0012 00018 (<autogenerated>:1)	CMPQ	8(BX), CX
-	0x0016 00022 (<autogenerated>:1)	JNE	51
-	0x0018 00024 (<autogenerated>:1)	MOVQ	16(AX), DX
-	0x001c 00028 (<autogenerated>:1)	NOP
-	0x0020 00032 (<autogenerated>:1)	CMPQ	16(BX), DX
-	0x0024 00036 (<autogenerated>:1)	JNE	51
-	0x0026 00038 (<autogenerated>:1)	MOVQ	(BX), BX
-	0x0029 00041 (<autogenerated>:1)	MOVQ	(AX), AX
-	0x002c 00044 (<autogenerated>:1)	PCDATA	$1, $1
-	0x002c 00044 (<autogenerated>:1)	CALL	runtime.memequal(SB)
-	0x0031 00049 (<autogenerated>:1)	JMP	53
-	0x0033 00051 (<autogenerated>:1)	XORL	AX, AX
-	0x0035 00053 (<autogenerated>:1)	PCDATA	$1, $-1
-	0x0035 00053 (<autogenerated>:1)	ADDQ	$24, SP
-	0x0039 00057 (<autogenerated>:1)	POPQ	BP
-	0x003a 00058 (<autogenerated>:1)	RET
-	0x003b 00059 (<autogenerated>:1)	NOP
-	0x003b 00059 (<autogenerated>:1)	PCDATA	$1, $-1
-	0x003b 00059 (<autogenerated>:1)	PCDATA	$0, $-2
-	0x003b 00059 (<autogenerated>:1)	MOVQ	AX, 8(SP)
-	0x0040 00064 (<autogenerated>:1)	MOVQ	BX, 16(SP)
-	0x0045 00069 (<autogenerated>:1)	CALL	runtime.morestack_noctxt(SB)
-	0x004a 00074 (<autogenerated>:1)	MOVQ	8(SP), AX
-	0x004f 00079 (<autogenerated>:1)	MOVQ	16(SP), BX
-	0x0054 00084 (<autogenerated>:1)	PCDATA	$0, $-1
-	0x0054 00084 (<autogenerated>:1)	JMP	0
-	0x0000 49 3b 66 10 76 35 55 48 89 e5 48 83 ec 18 48 8b  I;f.v5UH..H...H.
-	0x0010 48 08 48 39 4b 08 75 1b 48 8b 50 10 0f 1f 40 00  H.H9K.u.H.P...@.
-	0x0020 48 39 53 10 75 0d 48 8b 1b 48 8b 00 e8 00 00 00  H9S.u.H..H......
-	0x0030 00 eb 02 31 c0 48 83 c4 18 5d c3 48 89 44 24 08  ...1.H...].H.D$.
-	0x0040 48 89 5c 24 10 e8 00 00 00 00 48 8b 44 24 08 48  H.\$......H.D$.H
-	0x0050 8b 5c 24 10 eb aa                                .\$...
-	rel 45+4 t=7 runtime.memequal+0
-	rel 70+4 t=7 runtime.morestack_noctxt+0
-main.Namer.GetName STEXT dupok size=92 args=0x10 locals=0x10 funcid=0x15 align=0x0
-	0x0000 00000 (<autogenerated>:1)	TEXT	main.Namer.GetName(SB), DUPOK|WRAPPER|ABIInternal, $16-16
-	0x0000 00000 (<autogenerated>:1)	CMPQ	SP, 16(R14)
-	0x0004 00004 (<autogenerated>:1)	PCDATA	$0, $-2
-	0x0004 00004 (<autogenerated>:1)	JLS	48
-	0x0006 00006 (<autogenerated>:1)	PCDATA	$0, $-1
-	0x0006 00006 (<autogenerated>:1)	PUSHQ	BP
-	0x0007 00007 (<autogenerated>:1)	MOVQ	SP, BP
-	0x000a 00010 (<autogenerated>:1)	SUBQ	$8, SP
-	0x000e 00014 (<autogenerated>:1)	MOVQ	32(R14), R12
-	0x0012 00018 (<autogenerated>:1)	TESTQ	R12, R12
-	0x0015 00021 (<autogenerated>:1)	JNE	75
-	0x0017 00023 (<autogenerated>:1)	NOP
-	0x0017 00023 (<autogenerated>:1)	MOVQ	AX, main..this+24(FP)
-	0x001c 00028 (<autogenerated>:1)	MOVQ	BX, main..this+32(FP)
-	0x0021 00033 (<autogenerated>:1)	FUNCDATA	$0, gclocals·IuErl7MOXaHVn7EZYWzfFA==(SB)
-	0x0021 00033 (<autogenerated>:1)	FUNCDATA	$1, gclocals·J5F+7Qw7O7ve2QcWC7DpeQ==(SB)
-	0x0021 00033 (<autogenerated>:1)	FUNCDATA	$5, main.Namer.GetName.arginfo1(SB)
-	0x0021 00033 (<autogenerated>:1)	FUNCDATA	$6, main.Namer.GetName.argliveinfo(SB)
-	0x0021 00033 (<autogenerated>:1)	PCDATA	$3, $1
-	0x0021 00033 (<autogenerated>:1)	MOVQ	24(AX), CX
-	0x0025 00037 (<autogenerated>:1)	MOVQ	BX, AX
-	0x0028 00040 (<autogenerated>:1)	PCDATA	$1, $1
-	0x0028 00040 (<autogenerated>:1)	CALL	CX
-	0x002a 00042 (<autogenerated>:1)	ADDQ	$8, SP
-	0x002e 00046 (<autogenerated>:1)	POPQ	BP
-	0x002f 00047 (<autogenerated>:1)	RET
-	0x0030 00048 (<autogenerated>:1)	NOP
-	0x0030 00048 (<autogenerated>:1)	PCDATA	$1, $-1
-	0x0030 00048 (<autogenerated>:1)	PCDATA	$0, $-2
-	0x0030 00048 (<autogenerated>:1)	MOVQ	AX, 8(SP)
-	0x0035 00053 (<autogenerated>:1)	MOVQ	BX, 16(SP)
-	0x003a 00058 (<autogenerated>:1)	CALL	runtime.morestack_noctxt(SB)
-	0x003f 00063 (<autogenerated>:1)	MOVQ	8(SP), AX
-	0x0044 00068 (<autogenerated>:1)	MOVQ	16(SP), BX
-	0x0049 00073 (<autogenerated>:1)	PCDATA	$0, $-1
-	0x0049 00073 (<autogenerated>:1)	JMP	0
-	0x004b 00075 (<autogenerated>:1)	LEAQ	24(SP), R13
-	0x0050 00080 (<autogenerated>:1)	CMPQ	(R12), R13
-	0x0054 00084 (<autogenerated>:1)	JNE	23
-	0x0056 00086 (<autogenerated>:1)	MOVQ	SP, (R12)
-	0x005a 00090 (<autogenerated>:1)	JMP	23
-	0x0000 49 3b 66 10 76 2a 55 48 89 e5 48 83 ec 08 4d 8b  I;f.v*UH..H...M.
-	0x0010 66 20 4d 85 e4 75 34 48 89 44 24 18 48 89 5c 24  f M..u4H.D$.H.\$
-	0x0020 20 48 8b 48 18 48 89 d8 ff d1 48 83 c4 08 5d c3   H.H.H....H...].
-	0x0030 48 89 44 24 08 48 89 5c 24 10 e8 00 00 00 00 48  H.D$.H.\$......H
-	0x0040 8b 44 24 08 48 8b 5c 24 10 eb b5 4c 8d 6c 24 18  .D$.H.\$...L.l$.
-	0x0050 4d 39 2c 24 75 c1 49 89 24 24 eb bb              M9,$u.I.$$..
-	rel 2+0 t=24 type:main.Namer+96
-	rel 40+0 t=10 +0
-	rel 59+4 t=7 runtime.morestack_noctxt+0
-main.NamerAndAger.GetAge STEXT dupok size=92 args=0x10 locals=0x10 funcid=0x15 align=0x0
-	0x0000 00000 (<autogenerated>:1)	TEXT	main.NamerAndAger.GetAge(SB), DUPOK|WRAPPER|ABIInternal, $16-16
-	0x0000 00000 (<autogenerated>:1)	CMPQ	SP, 16(R14)
-	0x0004 00004 (<autogenerated>:1)	PCDATA	$0, $-2
-	0x0004 00004 (<autogenerated>:1)	JLS	48
-	0x0006 00006 (<autogenerated>:1)	PCDATA	$0, $-1
-	0x0006 00006 (<autogenerated>:1)	PUSHQ	BP
-	0x0007 00007 (<autogenerated>:1)	MOVQ	SP, BP
-	0x000a 00010 (<autogenerated>:1)	SUBQ	$8, SP
-	0x000e 00014 (<autogenerated>:1)	MOVQ	32(R14), R12
-	0x0012 00018 (<autogenerated>:1)	TESTQ	R12, R12
-	0x0015 00021 (<autogenerated>:1)	JNE	75
-	0x0017 00023 (<autogenerated>:1)	NOP
-	0x0017 00023 (<autogenerated>:1)	MOVQ	AX, main..this+24(FP)
-	0x001c 00028 (<autogenerated>:1)	MOVQ	BX, main..this+32(FP)
-	0x0021 00033 (<autogenerated>:1)	FUNCDATA	$0, gclocals·IuErl7MOXaHVn7EZYWzfFA==(SB)
-	0x0021 00033 (<autogenerated>:1)	FUNCDATA	$1, gclocals·J5F+7Qw7O7ve2QcWC7DpeQ==(SB)
-	0x0021 00033 (<autogenerated>:1)	FUNCDATA	$5, main.NamerAndAger.GetAge.arginfo1(SB)
-	0x0021 00033 (<autogenerated>:1)	FUNCDATA	$6, main.NamerAndAger.GetAge.argliveinfo(SB)
-	0x0021 00033 (<autogenerated>:1)	PCDATA	$3, $1
-	0x0021 00033 (<autogenerated>:1)	MOVQ	24(AX), CX
-	0x0025 00037 (<autogenerated>:1)	MOVQ	BX, AX
-	0x0028 00040 (<autogenerated>:1)	PCDATA	$1, $1
-	0x0028 00040 (<autogenerated>:1)	CALL	CX
-	0x002a 00042 (<autogenerated>:1)	ADDQ	$8, SP
-	0x002e 00046 (<autogenerated>:1)	POPQ	BP
-	0x002f 00047 (<autogenerated>:1)	RET
-	0x0030 00048 (<autogenerated>:1)	NOP
-	0x0030 00048 (<autogenerated>:1)	PCDATA	$1, $-1
-	0x0030 00048 (<autogenerated>:1)	PCDATA	$0, $-2
-	0x0030 00048 (<autogenerated>:1)	MOVQ	AX, 8(SP)
-	0x0035 00053 (<autogenerated>:1)	MOVQ	BX, 16(SP)
-	0x003a 00058 (<autogenerated>:1)	CALL	runtime.morestack_noctxt(SB)
-	0x003f 00063 (<autogenerated>:1)	MOVQ	8(SP), AX
-	0x0044 00068 (<autogenerated>:1)	MOVQ	16(SP), BX
-	0x0049 00073 (<autogenerated>:1)	PCDATA	$0, $-1
-	0x0049 00073 (<autogenerated>:1)	JMP	0
-	0x004b 00075 (<autogenerated>:1)	LEAQ	24(SP), R13
-	0x0050 00080 (<autogenerated>:1)	CMPQ	(R12), R13
-	0x0054 00084 (<autogenerated>:1)	JNE	23
-	0x0056 00086 (<autogenerated>:1)	MOVQ	SP, (R12)
-	0x005a 00090 (<autogenerated>:1)	JMP	23
-	0x0000 49 3b 66 10 76 2a 55 48 89 e5 48 83 ec 08 4d 8b  I;f.v*UH..H...M.
-	0x0010 66 20 4d 85 e4 75 34 48 89 44 24 18 48 89 5c 24  f M..u4H.D$.H.\$
-	0x0020 20 48 8b 48 18 48 89 d8 ff d1 48 83 c4 08 5d c3   H.H.H....H...].
-	0x0030 48 89 44 24 08 48 89 5c 24 10 e8 00 00 00 00 48  H.D$.H.\$......H
-	0x0040 8b 44 24 08 48 8b 5c 24 10 eb b5 4c 8d 6c 24 18  .D$.H.\$...L.l$.
-	0x0050 4d 39 2c 24 75 c1 49 89 24 24 eb bb              M9,$u.I.$$..
-	rel 2+0 t=24 type:main.NamerAndAger+96
-	rel 40+0 t=10 +0
-	rel 59+4 t=7 runtime.morestack_noctxt+0
-main.NamerAndAger.GetName STEXT dupok size=92 args=0x10 locals=0x10 funcid=0x15 align=0x0
-	0x0000 00000 (<autogenerated>:1)	TEXT	main.NamerAndAger.GetName(SB), DUPOK|WRAPPER|ABIInternal, $16-16
-	0x0000 00000 (<autogenerated>:1)	CMPQ	SP, 16(R14)
-	0x0004 00004 (<autogenerated>:1)	PCDATA	$0, $-2
-	0x0004 00004 (<autogenerated>:1)	JLS	48
-	0x0006 00006 (<autogenerated>:1)	PCDATA	$0, $-1
-	0x0006 00006 (<autogenerated>:1)	PUSHQ	BP
-	0x0007 00007 (<autogenerated>:1)	MOVQ	SP, BP
-	0x000a 00010 (<autogenerated>:1)	SUBQ	$8, SP
-	0x000e 00014 (<autogenerated>:1)	MOVQ	32(R14), R12
-	0x0012 00018 (<autogenerated>:1)	TESTQ	R12, R12
-	0x0015 00021 (<autogenerated>:1)	JNE	75
-	0x0017 00023 (<autogenerated>:1)	NOP
-	0x0017 00023 (<autogenerated>:1)	MOVQ	AX, main..this+24(FP)
-	0x001c 00028 (<autogenerated>:1)	MOVQ	BX, main..this+32(FP)
-	0x0021 00033 (<autogenerated>:1)	FUNCDATA	$0, gclocals·IuErl7MOXaHVn7EZYWzfFA==(SB)
-	0x0021 00033 (<autogenerated>:1)	FUNCDATA	$1, gclocals·J5F+7Qw7O7ve2QcWC7DpeQ==(SB)
-	0x0021 00033 (<autogenerated>:1)	FUNCDATA	$5, main.NamerAndAger.GetName.arginfo1(SB)
-	0x0021 00033 (<autogenerated>:1)	FUNCDATA	$6, main.NamerAndAger.GetName.argliveinfo(SB)
-	0x0021 00033 (<autogenerated>:1)	PCDATA	$3, $1
-	0x0021 00033 (<autogenerated>:1)	MOVQ	32(AX), CX
-	0x0025 00037 (<autogenerated>:1)	MOVQ	BX, AX
-	0x0028 00040 (<autogenerated>:1)	PCDATA	$1, $1
-	0x0028 00040 (<autogenerated>:1)	CALL	CX
-	0x002a 00042 (<autogenerated>:1)	ADDQ	$8, SP
-	0x002e 00046 (<autogenerated>:1)	POPQ	BP
-	0x002f 00047 (<autogenerated>:1)	RET
-	0x0030 00048 (<autogenerated>:1)	NOP
-	0x0030 00048 (<autogenerated>:1)	PCDATA	$1, $-1
-	0x0030 00048 (<autogenerated>:1)	PCDATA	$0, $-2
-	0x0030 00048 (<autogenerated>:1)	MOVQ	AX, 8(SP)
-	0x0035 00053 (<autogenerated>:1)	MOVQ	BX, 16(SP)
-	0x003a 00058 (<autogenerated>:1)	CALL	runtime.morestack_noctxt(SB)
-	0x003f 00063 (<autogenerated>:1)	MOVQ	8(SP), AX
-	0x0044 00068 (<autogenerated>:1)	MOVQ	16(SP), BX
-	0x0049 00073 (<autogenerated>:1)	PCDATA	$0, $-1
-	0x0049 00073 (<autogenerated>:1)	JMP	0
-	0x004b 00075 (<autogenerated>:1)	LEAQ	24(SP), R13
-	0x0050 00080 (<autogenerated>:1)	CMPQ	(R12), R13
-	0x0054 00084 (<autogenerated>:1)	JNE	23
-	0x0056 00086 (<autogenerated>:1)	MOVQ	SP, (R12)
-	0x005a 00090 (<autogenerated>:1)	JMP	23
-	0x0000 49 3b 66 10 76 2a 55 48 89 e5 48 83 ec 08 4d 8b  I;f.v*UH..H...M.
-	0x0010 66 20 4d 85 e4 75 34 48 89 44 24 18 48 89 5c 24  f M..u4H.D$.H.\$
-	0x0020 20 48 8b 48 20 48 89 d8 ff d1 48 83 c4 08 5d c3   H.H H....H...].
-	0x0030 48 89 44 24 08 48 89 5c 24 10 e8 00 00 00 00 48  H.D$.H.\$......H
-	0x0040 8b 44 24 08 48 8b 5c 24 10 eb b5 4c 8d 6c 24 18  .D$.H.\$...L.l$.
-	0x0050 4d 39 2c 24 75 c1 49 89 24 24 eb bb              M9,$u.I.$$..
-	rel 2+0 t=24 type:main.NamerAndAger+104
-	rel 40+0 t=10 +0
-	rel 59+4 t=7 runtime.morestack_noctxt+0
-main.(*User).GetAge STEXT dupok nosplit size=47 args=0x8 locals=0x8 funcid=0x15 align=0x0
-	0x0000 00000 (<autogenerated>:1)	TEXT	main.(*User).GetAge(SB), DUPOK|NOSPLIT|WRAPPER|ABIInternal, $8-8
-	0x0000 00000 (<autogenerated>:1)	PUSHQ	BP
-	0x0001 00001 (<autogenerated>:1)	MOVQ	SP, BP
-	0x0004 00004 (<autogenerated>:1)	MOVQ	32(R14), R12
-	0x0008 00008 (<autogenerated>:1)	TESTQ	R12, R12
-	0x000b 00011 (<autogenerated>:1)	JNE	30
-	0x000d 00013 (<autogenerated>:1)	NOP
-	0x000d 00013 (<autogenerated>:1)	FUNCDATA	$0, gclocals·wgcWObbY2HYnK2SU/U22lA==(SB)
-	0x000d 00013 (<autogenerated>:1)	FUNCDATA	$1, gclocals·J5F+7Qw7O7ve2QcWC7DpeQ==(SB)
-	0x000d 00013 (<autogenerated>:1)	FUNCDATA	$5, main.(*User).GetAge.arginfo1(SB)
-	0x000d 00013 (<autogenerated>:1)	FUNCDATA	$6, main.(*User).GetAge.argliveinfo(SB)
-	0x000d 00013 (<autogenerated>:1)	PCDATA	$3, $1
-	0x000d 00013 (<autogenerated>:1)	TESTQ	AX, AX
-	0x0010 00016 (<autogenerated>:1)	JEQ	24
-	0x0012 00018 (<autogenerated>:1)	MOVQ	16(AX), AX
-	0x0016 00022 (<autogenerated>:1)	POPQ	BP
-	0x0017 00023 (<autogenerated>:1)	RET
-	0x0018 00024 (<autogenerated>:1)	PCDATA	$1, $1
-	0x0018 00024 (<autogenerated>:1)	CALL	runtime.panicwrap(SB)
-	0x001d 00029 (<autogenerated>:1)	XCHGL	AX, AX
-	0x001e 00030 (<autogenerated>:1)	LEAQ	16(SP), R13
-	0x0023 00035 (<autogenerated>:1)	CMPQ	(R12), R13
-	0x0027 00039 (<autogenerated>:1)	JNE	13
-	0x0029 00041 (<autogenerated>:1)	MOVQ	SP, (R12)
-	0x002d 00045 (<autogenerated>:1)	JMP	13
-	0x0000 55 48 89 e5 4d 8b 66 20 4d 85 e4 75 11 48 85 c0  UH..M.f M..u.H..
-	0x0010 74 06 48 8b 40 10 5d c3 e8 00 00 00 00 90 4c 8d  t.H.@.].......L.
-	0x0020 6c 24 10 4d 39 2c 24 75 e4 49 89 24 24 eb de     l$.M9,$u.I.$$..
-	rel 25+4 t=7 runtime.panicwrap+0
-main.(*User).GetName STEXT dupok nosplit size=55 args=0x8 locals=0x8 funcid=0x15 align=0x0
-	0x0000 00000 (<autogenerated>:1)	TEXT	main.(*User).GetName(SB), DUPOK|NOSPLIT|WRAPPER|ABIInternal, $8-8
-	0x0000 00000 (<autogenerated>:1)	PUSHQ	BP
-	0x0001 00001 (<autogenerated>:1)	MOVQ	SP, BP
-	0x0004 00004 (<autogenerated>:1)	MOVQ	32(R14), R12
-	0x0008 00008 (<autogenerated>:1)	TESTQ	R12, R12
-	0x000b 00011 (<autogenerated>:1)	JNE	38
-	0x000d 00013 (<autogenerated>:1)	NOP
-	0x000d 00013 (<autogenerated>:1)	FUNCDATA	$0, gclocals·wgcWObbY2HYnK2SU/U22lA==(SB)
-	0x000d 00013 (<autogenerated>:1)	FUNCDATA	$1, gclocals·J5F+7Qw7O7ve2QcWC7DpeQ==(SB)
-	0x000d 00013 (<autogenerated>:1)	FUNCDATA	$5, main.(*User).GetName.arginfo1(SB)
-	0x000d 00013 (<autogenerated>:1)	FUNCDATA	$6, main.(*User).GetName.argliveinfo(SB)
-	0x000d 00013 (<autogenerated>:1)	PCDATA	$3, $1
-	0x000d 00013 (<autogenerated>:1)	TESTQ	AX, AX
-	0x0010 00016 (<autogenerated>:1)	JEQ	30
-	0x0012 00018 (<autogenerated>:1)	MOVQ	(AX), CX
-	0x0015 00021 (<autogenerated>:1)	MOVQ	8(AX), BX
-	0x0019 00025 (<autogenerated>:1)	MOVQ	CX, AX
-	0x001c 00028 (<autogenerated>:1)	POPQ	BP
-	0x001d 00029 (<autogenerated>:1)	RET
-	0x001e 00030 (<autogenerated>:1)	PCDATA	$1, $1
-	0x001e 00030 (<autogenerated>:1)	NOP
-	0x0020 00032 (<autogenerated>:1)	CALL	runtime.panicwrap(SB)
-	0x0025 00037 (<autogenerated>:1)	XCHGL	AX, AX
-	0x0026 00038 (<autogenerated>:1)	LEAQ	16(SP), R13
-	0x002b 00043 (<autogenerated>:1)	CMPQ	(R12), R13
-	0x002f 00047 (<autogenerated>:1)	JNE	13
-	0x0031 00049 (<autogenerated>:1)	MOVQ	SP, (R12)
-	0x0035 00053 (<autogenerated>:1)	JMP	13
-	0x0000 55 48 89 e5 4d 8b 66 20 4d 85 e4 75 19 48 85 c0  UH..M.f M..u.H..
-	0x0010 74 0c 48 8b 08 48 8b 58 08 48 89 c8 5d c3 66 90  t.H..H.X.H..].f.
-	0x0020 e8 00 00 00 00 90 4c 8d 6c 24 10 4d 39 2c 24 75  ......L.l$.M9,$u
-	0x0030 dc 49 89 24 24 eb d6                             .I.$$..
-	rel 33+4 t=7 runtime.panicwrap+0
-type:.eq.main.User STEXT dupok size=86 args=0x10 locals=0x20 funcid=0x0 align=0x0
-	0x0000 00000 (<autogenerated>:1)	TEXT	type:.eq.main.User(SB), DUPOK|ABIInternal, $32-16
-	0x0000 00000 (<autogenerated>:1)	CMPQ	SP, 16(R14)
-	0x0004 00004 (<autogenerated>:1)	PCDATA	$0, $-2
-	0x0004 00004 (<autogenerated>:1)	JLS	59
-	0x0006 00006 (<autogenerated>:1)	PCDATA	$0, $-1
-	0x0006 00006 (<autogenerated>:1)	PUSHQ	BP
-	0x0007 00007 (<autogenerated>:1)	MOVQ	SP, BP
-	0x000a 00010 (<autogenerated>:1)	SUBQ	$24, SP
-	0x000e 00014 (<autogenerated>:1)	FUNCDATA	$0, gclocals·TjPuuCwdlCpTaRQGRKTrYw==(SB)
-	0x000e 00014 (<autogenerated>:1)	FUNCDATA	$1, gclocals·J5F+7Qw7O7ve2QcWC7DpeQ==(SB)
-	0x000e 00014 (<autogenerated>:1)	FUNCDATA	$5, type:.eq.main.User.arginfo1(SB)
-	0x000e 00014 (<autogenerated>:1)	FUNCDATA	$6, type:.eq.main.User.argliveinfo(SB)
-	0x000e 00014 (<autogenerated>:1)	PCDATA	$3, $1
-	0x000e 00014 (<autogenerated>:1)	MOVQ	8(AX), CX
-	0x0012 00018 (<autogenerated>:1)	CMPQ	8(BX), CX
-	0x0016 00022 (<autogenerated>:1)	JNE	51
-	0x0018 00024 (<autogenerated>:1)	MOVQ	16(AX), DX
-	0x001c 00028 (<autogenerated>:1)	NOP
-	0x0020 00032 (<autogenerated>:1)	CMPQ	16(BX), DX
-	0x0024 00036 (<autogenerated>:1)	JNE	51
-	0x0026 00038 (<autogenerated>:1)	MOVQ	(BX), BX
-	0x0029 00041 (<autogenerated>:1)	MOVQ	(AX), AX
-	0x002c 00044 (<autogenerated>:1)	PCDATA	$1, $1
-	0x002c 00044 (<autogenerated>:1)	CALL	runtime.memequal(SB)
-	0x0031 00049 (<autogenerated>:1)	JMP	53
-	0x0033 00051 (<autogenerated>:1)	XORL	AX, AX
-	0x0035 00053 (<autogenerated>:1)	PCDATA	$1, $-1
-	0x0035 00053 (<autogenerated>:1)	ADDQ	$24, SP
-	0x0039 00057 (<autogenerated>:1)	POPQ	BP
-	0x003a 00058 (<autogenerated>:1)	RET
-	0x003b 00059 (<autogenerated>:1)	NOP
-	0x003b 00059 (<autogenerated>:1)	PCDATA	$1, $-1
-	0x003b 00059 (<autogenerated>:1)	PCDATA	$0, $-2
-	0x003b 00059 (<autogenerated>:1)	MOVQ	AX, 8(SP)
-	0x0040 00064 (<autogenerated>:1)	MOVQ	BX, 16(SP)
-	0x0045 00069 (<autogenerated>:1)	CALL	runtime.morestack_noctxt(SB)
-	0x004a 00074 (<autogenerated>:1)	MOVQ	8(SP), AX
-	0x004f 00079 (<autogenerated>:1)	MOVQ	16(SP), BX
-	0x0054 00084 (<autogenerated>:1)	PCDATA	$0, $-1
-	0x0054 00084 (<autogenerated>:1)	JMP	0
-	0x0000 49 3b 66 10 76 35 55 48 89 e5 48 83 ec 18 48 8b  I;f.v5UH..H...H.
-	0x0010 48 08 48 39 4b 08 75 1b 48 8b 50 10 0f 1f 40 00  H.H9K.u.H.P...@.
-	0x0020 48 39 53 10 75 0d 48 8b 1b 48 8b 00 e8 00 00 00  H9S.u.H..H......
-	0x0030 00 eb 02 31 c0 48 83 c4 18 5d c3 48 89 44 24 08  ...1.H...].H.D$.
-	0x0040 48 89 5c 24 10 e8 00 00 00 00 48 8b 44 24 08 48  H.\$......H.D$.H
-	0x0050 8b 5c 24 10 eb aa                                .\$...
-	rel 45+4 t=7 runtime.memequal+0
-	rel 70+4 t=7 runtime.morestack_noctxt+0
+main.main STEXT size=165 args=0x0 locals=0x50 funcid=0x0 align=0x0
+	0x0000 00000 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:14)	TEXT	main.main(SB), ABIInternal, $80-0
+	0x0000 00000 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:14)	CMPQ	SP, 16(R14)
+	0x0004 00004 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:14)	PCDATA	$0, $-2
+	0x0004 00004 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:14)	JLS	154
+	0x000a 00010 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:14)	PCDATA	$0, $-1
+	0x000a 00010 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:14)	PUSHQ	BP
+	0x000b 00011 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:14)	MOVQ	SP, BP
+	0x000e 00014 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:14)	SUBQ	$72, SP
+	0x0012 00018 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:14)	FUNCDATA	$0, gclocals·g2BeySu+wFnoycgXfElmcg==(SB)
+	0x0012 00018 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:14)	FUNCDATA	$1, gclocals·g2BeySu+wFnoycgXfElmcg==(SB)
+	0x0012 00018 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:15)	MOVUPS	X15, main..autotmp_0+48(SP)
+	0x0018 00024 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:15)	MOVUPS	X15, main..autotmp_0+56(SP)
+	0x001e 00030 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:15)	MOVQ	$1, main..autotmp_0+48(SP)
+	0x0027 00039 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:15)	MOVQ	$2, main..autotmp_0+56(SP)
+	0x0030 00048 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:15)	MOVQ	$3, main..autotmp_0+64(SP)
+	0x0039 00057 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:15)	LEAQ	main..dict.Sum[int](SB), AX
+	0x0040 00064 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:15)	LEAQ	main..autotmp_0+48(SP), BX
+	0x0045 00069 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:15)	MOVL	$3, CX
+	0x004a 00074 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:15)	MOVQ	CX, DI
+	0x004d 00077 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:15)	PCDATA	$1, $0
+	0x004d 00077 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:15)	CALL	main.Sum[go.shape.int](SB)
+	0x0052 00082 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:16)	MOVQ	$0, main..autotmp_1+36(SP)
+	0x005b 00091 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:16)	MOVQ	$0, main..autotmp_1+40(SP)
+	0x0064 00100 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:16)	MOVL	$1, main..autotmp_1+36(SP)
+	0x006c 00108 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:16)	MOVQ	$12884901890, DX
+	0x0076 00118 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:16)	MOVQ	DX, main..autotmp_1+40(SP)
+	0x007b 00123 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:16)	LEAQ	main..dict.Sum[int32](SB), AX
+	0x0082 00130 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:16)	LEAQ	main..autotmp_1+36(SP), BX
+	0x0087 00135 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:16)	MOVL	$3, CX
+	0x008c 00140 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:16)	MOVQ	CX, DI
+	0x008f 00143 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:16)	CALL	main.Sum[go.shape.int32](SB)
+	0x0094 00148 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:17)	ADDQ	$72, SP
+	0x0098 00152 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:17)	POPQ	BP
+	0x0099 00153 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:17)	RET
+	0x009a 00154 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:17)	NOP
+	0x009a 00154 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:14)	PCDATA	$1, $-1
+	0x009a 00154 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:14)	PCDATA	$0, $-2
+	0x009a 00154 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:14)	CALL	runtime.morestack_noctxt(SB)
+	0x009f 00159 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:14)	PCDATA	$0, $-1
+	0x009f 00159 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:14)	NOP
+	0x00a0 00160 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:14)	JMP	0
+	0x0000 49 3b 66 10 0f 86 90 00 00 00 55 48 89 e5 48 83  I;f.......UH..H.
+	0x0010 ec 48 44 0f 11 7c 24 30 44 0f 11 7c 24 38 48 c7  .HD..|$0D..|$8H.
+	0x0020 44 24 30 01 00 00 00 48 c7 44 24 38 02 00 00 00  D$0....H.D$8....
+	0x0030 48 c7 44 24 40 03 00 00 00 48 8d 05 00 00 00 00  H.D$@....H......
+	0x0040 48 8d 5c 24 30 b9 03 00 00 00 48 89 cf e8 00 00  H.\$0.....H.....
+	0x0050 00 00 48 c7 44 24 24 00 00 00 00 48 c7 44 24 28  ..H.D$$....H.D$(
+	0x0060 00 00 00 00 c7 44 24 24 01 00 00 00 48 ba 02 00  .....D$$....H...
+	0x0070 00 00 03 00 00 00 48 89 54 24 28 48 8d 05 00 00  ......H.T$(H....
+	0x0080 00 00 48 8d 5c 24 24 b9 03 00 00 00 48 89 cf e8  ..H.\$$.....H...
+	0x0090 00 00 00 00 48 83 c4 48 5d c3 e8 00 00 00 00 90  ....H..H].......
+	0x00a0 e9 5b ff ff ff                                   .[...
+	rel 60+4 t=14 main..dict.Sum[int]+0
+	rel 78+4 t=7 main.Sum[go.shape.int]+0
+	rel 126+4 t=14 main..dict.Sum[int32]+0
+	rel 144+4 t=7 main.Sum[go.shape.int32]+0
+	rel 155+4 t=7 runtime.morestack_noctxt+0
+main.Sum[go.shape.int32] STEXT dupok nosplit size=40 args=0x20 locals=0x0 funcid=0x0 align=0x0
+	0x0000 00000 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	TEXT	main.Sum[go.shape.int32](SB), DUPOK|NOSPLIT|NOFRAME|ABIInternal, $0-32
+	0x0000 00000 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	MOVQ	BX, main.nums+16(FP)
+	0x0005 00005 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	FUNCDATA	$0, gclocals·IuErl7MOXaHVn7EZYWzfFA==(SB)
+	0x0005 00005 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	FUNCDATA	$1, gclocals·J5F+7Qw7O7ve2QcWC7DpeQ==(SB)
+	0x0005 00005 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	FUNCDATA	$5, main.Sum[go.shape.int32].arginfo1(SB)
+	0x0005 00005 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	FUNCDATA	$6, main.Sum[go.shape.int32].argliveinfo(SB)
+	0x0005 00005 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	PCDATA	$3, $1
+	0x0005 00005 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:5)	TESTQ	CX, CX
+	0x0008 00008 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:5)	JEQ	16
+	0x000a 00010 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:5)	XORL	AX, AX
+	0x000c 00012 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:5)	XORL	DX, DX
+	0x000e 00014 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:8)	JMP	32
+	0x0010 00016 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:6)	XORL	AX, AX
+	0x0012 00018 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:6)	RET
+	0x0013 00019 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:8)	MOVL	(BX)(AX*4), SI
+	0x0016 00022 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:8)	INCQ	AX
+	0x0019 00025 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:9)	ADDL	SI, DX
+	0x001b 00027 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:9)	NOP
+	0x0020 00032 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:8)	CMPQ	CX, AX
+	0x0023 00035 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:8)	JGT	19
+	0x0025 00037 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:11)	MOVL	DX, AX
+	0x0027 00039 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:11)	RET
+	0x0000 48 89 5c 24 10 48 85 c9 74 06 31 c0 31 d2 eb 10  H.\$.H..t.1.1...
+	0x0010 31 c0 c3 8b 34 83 48 ff c0 01 f2 0f 1f 44 00 00  1...4.H......D..
+	0x0020 48 39 c1 7f ee 89 d0 c3                          H9......
+main.Sum[int32] STEXT dupok size=109 args=0x18 locals=0x28 funcid=0x15 align=0x0
+	0x0000 00000 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	TEXT	main.Sum[int32](SB), DUPOK|WRAPPER|ABIInternal, $40-24
+	0x0000 00000 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	CMPQ	SP, 16(R14)
+	0x0004 00004 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	PCDATA	$0, $-2
+	0x0004 00004 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	JLS	55
+	0x0006 00006 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	PCDATA	$0, $-1
+	0x0006 00006 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	PUSHQ	BP
+	0x0007 00007 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	MOVQ	SP, BP
+	0x000a 00010 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	SUBQ	$32, SP
+	0x000e 00014 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	MOVQ	32(R14), R12
+	0x0012 00018 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	TESTQ	R12, R12
+	0x0015 00021 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	JNE	92
+	0x0017 00023 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	NOP
+	0x0017 00023 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	MOVQ	AX, main.nums+48(FP)
+	0x001c 00028 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	FUNCDATA	$0, gclocals·wgcWObbY2HYnK2SU/U22lA==(SB)
+	0x001c 00028 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	FUNCDATA	$1, gclocals·J5F+7Qw7O7ve2QcWC7DpeQ==(SB)
+	0x001c 00028 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	FUNCDATA	$5, main.Sum[int32].arginfo1(SB)
+	0x001c 00028 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	FUNCDATA	$6, main.Sum[int32].argliveinfo(SB)
+	0x001c 00028 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	PCDATA	$3, $1
+	0x001c 00028 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	MOVQ	CX, DI
+	0x001f 00031 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	MOVQ	BX, CX
+	0x0022 00034 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	MOVQ	AX, BX
+	0x0025 00037 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	LEAQ	main..dict.Sum[int32](SB), AX
+	0x002c 00044 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	PCDATA	$1, $1
+	0x002c 00044 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	CALL	main.Sum[go.shape.int32](SB)
+	0x0031 00049 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	ADDQ	$32, SP
+	0x0035 00053 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	POPQ	BP
+	0x0036 00054 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	RET
+	0x0037 00055 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	NOP
+	0x0037 00055 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	PCDATA	$1, $-1
+	0x0037 00055 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	PCDATA	$0, $-2
+	0x0037 00055 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	MOVQ	AX, 8(SP)
+	0x003c 00060 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	MOVQ	BX, 16(SP)
+	0x0041 00065 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	MOVQ	CX, 24(SP)
+	0x0046 00070 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	CALL	runtime.morestack_noctxt(SB)
+	0x004b 00075 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	MOVQ	8(SP), AX
+	0x0050 00080 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	MOVQ	16(SP), BX
+	0x0055 00085 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	MOVQ	24(SP), CX
+	0x005a 00090 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	PCDATA	$0, $-1
+	0x005a 00090 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	JMP	0
+	0x005c 00092 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	LEAQ	48(SP), R13
+	0x0061 00097 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	CMPQ	(R12), R13
+	0x0065 00101 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	JNE	23
+	0x0067 00103 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	MOVQ	SP, (R12)
+	0x006b 00107 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	JMP	23
+	0x0000 49 3b 66 10 76 31 55 48 89 e5 48 83 ec 20 4d 8b  I;f.v1UH..H.. M.
+	0x0010 66 20 4d 85 e4 75 45 48 89 44 24 30 48 89 cf 48  f M..uEH.D$0H..H
+	0x0020 89 d9 48 89 c3 48 8d 05 00 00 00 00 e8 00 00 00  ..H..H..........
+	0x0030 00 48 83 c4 20 5d c3 48 89 44 24 08 48 89 5c 24  .H.. ].H.D$.H.\$
+	0x0040 10 48 89 4c 24 18 e8 00 00 00 00 48 8b 44 24 08  .H.L$......H.D$.
+	0x0050 48 8b 5c 24 10 48 8b 4c 24 18 eb a4 4c 8d 6c 24  H.\$.H.L$...L.l$
+	0x0060 30 4d 39 2c 24 75 b0 49 89 24 24 eb aa           0M9,$u.I.$$..
+	rel 40+4 t=14 main..dict.Sum[int32]+0
+	rel 45+4 t=7 main.Sum[go.shape.int32]+0
+	rel 71+4 t=7 runtime.morestack_noctxt+0
+main.Sum[go.shape.int] STEXT dupok nosplit size=41 args=0x20 locals=0x0 funcid=0x0 align=0x0
+	0x0000 00000 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	TEXT	main.Sum[go.shape.int](SB), DUPOK|NOSPLIT|NOFRAME|ABIInternal, $0-32
+	0x0000 00000 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	MOVQ	BX, main.nums+16(FP)
+	0x0005 00005 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	FUNCDATA	$0, gclocals·IuErl7MOXaHVn7EZYWzfFA==(SB)
+	0x0005 00005 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	FUNCDATA	$1, gclocals·J5F+7Qw7O7ve2QcWC7DpeQ==(SB)
+	0x0005 00005 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	FUNCDATA	$5, main.Sum[go.shape.int].arginfo1(SB)
+	0x0005 00005 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	FUNCDATA	$6, main.Sum[go.shape.int].argliveinfo(SB)
+	0x0005 00005 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	PCDATA	$3, $1
+	0x0005 00005 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:5)	TESTQ	CX, CX
+	0x0008 00008 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:5)	JEQ	16
+	0x000a 00010 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:5)	XORL	AX, AX
+	0x000c 00012 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:5)	XORL	DX, DX
+	0x000e 00014 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:8)	JMP	32
+	0x0010 00016 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:6)	XORL	AX, AX
+	0x0012 00018 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:6)	RET
+	0x0013 00019 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:8)	MOVQ	(BX)(AX*8), SI
+	0x0017 00023 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:8)	INCQ	AX
+	0x001a 00026 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:9)	ADDQ	SI, DX
+	0x001d 00029 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:9)	NOP
+	0x0020 00032 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:8)	CMPQ	CX, AX
+	0x0023 00035 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:8)	JGT	19
+	0x0025 00037 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:11)	MOVQ	DX, AX
+	0x0028 00040 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:11)	RET
+	0x0000 48 89 5c 24 10 48 85 c9 74 06 31 c0 31 d2 eb 10  H.\$.H..t.1.1...
+	0x0010 31 c0 c3 48 8b 34 c3 48 ff c0 48 01 f2 0f 1f 00  1..H.4.H..H.....
+	0x0020 48 39 c1 7f ee 48 89 d0 c3                       H9...H...
+main.Sum[int] STEXT dupok size=109 args=0x18 locals=0x28 funcid=0x15 align=0x0
+	0x0000 00000 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	TEXT	main.Sum[int](SB), DUPOK|WRAPPER|ABIInternal, $40-24
+	0x0000 00000 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	CMPQ	SP, 16(R14)
+	0x0004 00004 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	PCDATA	$0, $-2
+	0x0004 00004 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	JLS	55
+	0x0006 00006 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	PCDATA	$0, $-1
+	0x0006 00006 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	PUSHQ	BP
+	0x0007 00007 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	MOVQ	SP, BP
+	0x000a 00010 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	SUBQ	$32, SP
+	0x000e 00014 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	MOVQ	32(R14), R12
+	0x0012 00018 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	TESTQ	R12, R12
+	0x0015 00021 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	JNE	92
+	0x0017 00023 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	NOP
+	0x0017 00023 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	MOVQ	AX, main.nums+48(FP)
+	0x001c 00028 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	FUNCDATA	$0, gclocals·wgcWObbY2HYnK2SU/U22lA==(SB)
+	0x001c 00028 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	FUNCDATA	$1, gclocals·J5F+7Qw7O7ve2QcWC7DpeQ==(SB)
+	0x001c 00028 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	FUNCDATA	$5, main.Sum[int].arginfo1(SB)
+	0x001c 00028 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	FUNCDATA	$6, main.Sum[int].argliveinfo(SB)
+	0x001c 00028 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	PCDATA	$3, $1
+	0x001c 00028 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	MOVQ	CX, DI
+	0x001f 00031 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	MOVQ	BX, CX
+	0x0022 00034 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	MOVQ	AX, BX
+	0x0025 00037 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	LEAQ	main..dict.Sum[int](SB), AX
+	0x002c 00044 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	PCDATA	$1, $1
+	0x002c 00044 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	CALL	main.Sum[go.shape.int](SB)
+	0x0031 00049 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	ADDQ	$32, SP
+	0x0035 00053 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	POPQ	BP
+	0x0036 00054 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	RET
+	0x0037 00055 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	NOP
+	0x0037 00055 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	PCDATA	$1, $-1
+	0x0037 00055 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	PCDATA	$0, $-2
+	0x0037 00055 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	MOVQ	AX, 8(SP)
+	0x003c 00060 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	MOVQ	BX, 16(SP)
+	0x0041 00065 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	MOVQ	CX, 24(SP)
+	0x0046 00070 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	CALL	runtime.morestack_noctxt(SB)
+	0x004b 00075 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	MOVQ	8(SP), AX
+	0x0050 00080 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	MOVQ	16(SP), BX
+	0x0055 00085 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	MOVQ	24(SP), CX
+	0x005a 00090 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	PCDATA	$0, $-1
+	0x005a 00090 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	JMP	0
+	0x005c 00092 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	LEAQ	48(SP), R13
+	0x0061 00097 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	CMPQ	(R12), R13
+	0x0065 00101 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	JNE	23
+	0x0067 00103 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	MOVQ	SP, (R12)
+	0x006b 00107 (/Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go:4)	JMP	23
+	0x0000 49 3b 66 10 76 31 55 48 89 e5 48 83 ec 20 4d 8b  I;f.v1UH..H.. M.
+	0x0010 66 20 4d 85 e4 75 45 48 89 44 24 30 48 89 cf 48  f M..uEH.D$0H..H
+	0x0020 89 d9 48 89 c3 48 8d 05 00 00 00 00 e8 00 00 00  ..H..H..........
+	0x0030 00 48 83 c4 20 5d c3 48 89 44 24 08 48 89 5c 24  .H.. ].H.D$.H.\$
+	0x0040 10 48 89 4c 24 18 e8 00 00 00 00 48 8b 44 24 08  .H.L$......H.D$.
+	0x0050 48 8b 5c 24 10 48 8b 4c 24 18 eb a4 4c 8d 6c 24  H.\$.H.L$...L.l$
+	0x0060 30 4d 39 2c 24 75 b0 49 89 24 24 eb aa           0M9,$u.I.$$..
+	rel 40+4 t=14 main..dict.Sum[int]+0
+	rel 45+4 t=7 main.Sum[go.shape.int]+0
+	rel 71+4 t=7 runtime.morestack_noctxt+0
 go:cuinfo.producer.<unlinkable> SDWARFCUINFO dupok size=0
 	0x0000 72 65 67 61 62 69                                regabi
+<unlinkable>..dict.Sum[int] SRODATA dupok size=24
+	0x0000 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+	rel 0+8 t=1 type:[]int+0
+	rel 0+0 t=23 type:[]int+0
+	rel 0+0 t=23 type:int+0
+	rel 0+0 t=23 type:int+0
+	rel 0+0 t=23 type:int+0
+	rel 8+8 t=1 type:int+0
+<unlinkable>..dict.Sum[int32] SRODATA dupok size=24
+	0x0000 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+	rel 0+8 t=1 type:[]int32+0
+	rel 0+0 t=23 type:[]int32+0
+	rel 0+0 t=23 type:int32+0
+	rel 0+0 t=23 type:int32+0
+	rel 0+0 t=23 type:int32+0
+	rel 8+8 t=1 type:int32+0
+go:cuinfo.packagename.main SDWARFCUINFO dupok size=0
+	0x0000 6d 61 69 6e                                      main
+main..inittask SNOPTRDATA size=8
+	0x0000 00 00 00 00 00 00 00 00                          ........
 runtime.memequal64·f SRODATA dupok size=8
 	0x0000 00 00 00 00 00 00 00 00                          ........
 	rel 0+8 t=1 runtime.memequal64+0
 runtime.gcbits.0100000000000000 SRODATA dupok size=8
 	0x0000 01 00 00 00 00 00 00 00                          ........
-type:.namedata.*func() int- SRODATA dupok size=13
-	0x0000 00 0b 2a 66 75 6e 63 28 29 20 69 6e 74           ..*func() int
-type:*func() int SRODATA dupok size=56
+type:.namedata.*go.shape.int- SRODATA dupok size=15
+	0x0000 00 0d 2a 67 6f 2e 73 68 61 70 65 2e 69 6e 74     ..*go.shape.int
+type:*go.shape.int SRODATA dupok size=56
 	0x0000 08 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
-	0x0010 a8 2d ca 18 08 08 08 36 00 00 00 00 00 00 00 00  .-.....6........
+	0x0010 72 95 1b 44 08 08 08 36 00 00 00 00 00 00 00 00  r..D...6........
 	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
 	0x0030 00 00 00 00 00 00 00 00                          ........
 	rel 24+8 t=1 runtime.memequal64·f+0
 	rel 32+8 t=1 runtime.gcbits.0100000000000000+0
-	rel 40+4 t=5 type:.namedata.*func() int-+0
-	rel 48+8 t=1 type:func() int+0
-type:func() int SRODATA dupok size=64
-	0x0000 08 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
-	0x0010 bd 68 d6 de 02 08 08 33 00 00 00 00 00 00 00 00  .h.....3........
+	rel 40+4 t=5 type:.namedata.*go.shape.int-+0
+	rel 48+8 t=1 type:go.shape.int+0
+runtime.gcbits. SRODATA dupok size=0
+type:.importpath.go.shape. SRODATA dupok size=10
+	0x0000 00 08 67 6f 2e 73 68 61 70 65                    ..go.shape
+type:go.shape.int SRODATA dupok size=64
+	0x0000 08 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+	0x0010 e3 a0 e4 5d 0f 08 08 02 00 00 00 00 00 00 00 00  ...]............
 	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0030 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	rel 32+8 t=1 runtime.gcbits.0100000000000000+0
-	rel 40+4 t=5 type:.namedata.*func() int-+0
-	rel 44+4 t=-32763 type:*func() int+0
-	rel 56+8 t=1 type:int+0
-type:.namedata.*func() string- SRODATA dupok size=16
-	0x0000 00 0e 2a 66 75 6e 63 28 29 20 73 74 72 69 6e 67  ..*func() string
-type:*func() string SRODATA dupok size=56
-	0x0000 08 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
-	0x0010 38 9a a4 d7 08 08 08 36 00 00 00 00 00 00 00 00  8......6........
-	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0030 00 00 00 00 00 00 00 00                          ........
+	0x0030 00 00 00 00 00 00 00 00 10 00 00 00 00 00 00 00  ................
 	rel 24+8 t=1 runtime.memequal64·f+0
-	rel 32+8 t=1 runtime.gcbits.0100000000000000+0
-	rel 40+4 t=5 type:.namedata.*func() string-+0
-	rel 48+8 t=1 type:func() string+0
-type:func() string SRODATA dupok size=64
-	0x0000 08 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
-	0x0010 01 e0 aa 9c 02 08 08 33 00 00 00 00 00 00 00 00  .......3........
-	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0030 00 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	rel 32+8 t=1 runtime.gcbits.0100000000000000+0
-	rel 40+4 t=5 type:.namedata.*func() string-+0
-	rel 44+4 t=-32763 type:*func() string+0
-	rel 56+8 t=1 type:string+0
-runtime.interequal·f SRODATA dupok size=8
+	rel 32+8 t=1 runtime.gcbits.+0
+	rel 40+4 t=5 type:.namedata.*go.shape.int-+0
+	rel 44+4 t=5 type:*go.shape.int+0
+	rel 48+4 t=5 type:.importpath.go.shape.+0
+runtime.memequal32·f SRODATA dupok size=8
 	0x0000 00 00 00 00 00 00 00 00                          ........
-	rel 0+8 t=1 runtime.interequal+0
-type:.namedata.*main.NamerAndAger. SRODATA dupok size=20
-	0x0000 01 12 2a 6d 61 69 6e 2e 4e 61 6d 65 72 41 6e 64  ..*main.NamerAnd
-	0x0010 41 67 65 72                                      Ager
-type:*<unlinkable>.NamerAndAger SRODATA size=56
+	rel 0+8 t=1 runtime.memequal32+0
+type:.namedata.*go.shape.int32- SRODATA dupok size=17
+	0x0000 00 0f 2a 67 6f 2e 73 68 61 70 65 2e 69 6e 74 33  ..*go.shape.int3
+	0x0010 32                                               2
+type:*go.shape.int32 SRODATA dupok size=56
 	0x0000 08 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
-	0x0010 56 87 b6 25 08 08 08 36 00 00 00 00 00 00 00 00  V..%...6........
+	0x0010 ec 52 4f 9e 08 08 08 36 00 00 00 00 00 00 00 00  .RO....6........
 	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
 	0x0030 00 00 00 00 00 00 00 00                          ........
 	rel 24+8 t=1 runtime.memequal64·f+0
 	rel 32+8 t=1 runtime.gcbits.0100000000000000+0
-	rel 40+4 t=5 type:.namedata.*main.NamerAndAger.+0
-	rel 48+8 t=1 type:<unlinkable>.NamerAndAger+0
-runtime.gcbits.0200000000000000 SRODATA dupok size=8
-	0x0000 02 00 00 00 00 00 00 00                          ........
-type:.importpath.<unlinkable>. SRODATA dupok size=14
-	0x0000 00 0c 3c 75 6e 6c 69 6e 6b 61 62 6c 65 3e        ..<unlinkable>
-type:.namedata.GetAge. SRODATA dupok size=8
-	0x0000 01 06 47 65 74 41 67 65                          ..GetAge
-type:.namedata.GetName. SRODATA dupok size=9
-	0x0000 01 07 47 65 74 4e 61 6d 65                       ..GetName
-type:<unlinkable>.NamerAndAger SRODATA size=112
-	0x0000 10 00 00 00 00 00 00 00 10 00 00 00 00 00 00 00  ................
-	0x0010 07 28 a6 2f 07 08 08 14 00 00 00 00 00 00 00 00  .(./............
+	rel 40+4 t=5 type:.namedata.*go.shape.int32-+0
+	rel 48+8 t=1 type:go.shape.int32+0
+type:go.shape.int32 SRODATA dupok size=64
+	0x0000 04 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+	0x0010 0c 8f 02 cc 0f 04 04 05 00 00 00 00 00 00 00 00  ................
+	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+	0x0030 00 00 00 00 00 00 00 00 10 00 00 00 00 00 00 00  ................
+	rel 24+8 t=1 runtime.memequal32·f+0
+	rel 32+8 t=1 runtime.gcbits.+0
+	rel 40+4 t=5 type:.namedata.*go.shape.int32-+0
+	rel 44+4 t=5 type:*go.shape.int32+0
+	rel 48+4 t=5 type:.importpath.go.shape.+0
+type:.eqfunc24 SRODATA dupok size=16
+	0x0000 00 00 00 00 00 00 00 00 18 00 00 00 00 00 00 00  ................
+	rel 0+8 t=1 runtime.memequal_varlen+0
+type:.namedata.*[3]uintptr- SRODATA dupok size=13
+	0x0000 00 0b 2a 5b 33 5d 75 69 6e 74 70 74 72           ..*[3]uintptr
+type:[3]uintptr SRODATA dupok size=72
+	0x0000 18 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+	0x0010 33 e7 19 db 0a 08 08 11 00 00 00 00 00 00 00 00  3...............
 	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
 	0x0030 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0040 02 00 00 00 00 00 00 00 02 00 00 00 00 00 00 00  ................
-	0x0050 00 00 00 00 00 00 00 00 20 00 00 00 00 00 00 00  ........ .......
-	0x0060 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	rel 24+8 t=1 runtime.interequal·f+0
-	rel 32+8 t=1 runtime.gcbits.0200000000000000+0
-	rel 40+4 t=5 type:.namedata.*main.NamerAndAger.+0
-	rel 44+4 t=5 type:*<unlinkable>.NamerAndAger+0
-	rel 48+8 t=1 type:.importpath.<unlinkable>.+0
-	rel 56+8 t=1 type:<unlinkable>.NamerAndAger+96
-	rel 80+4 t=5 type:.importpath.<unlinkable>.+0
-	rel 96+4 t=5 type:.namedata.GetAge.+0
-	rel 100+4 t=5 type:func() int+0
-	rel 104+4 t=5 type:.namedata.GetName.+0
-	rel 108+4 t=5 type:func() string+0
-type:.eqfunc.<unlinkable>.User SRODATA dupok size=8
-	0x0000 00 00 00 00 00 00 00 00                          ........
-	rel 0+8 t=1 type:.eq.<unlinkable>.User+0
-type:.namedata.*main.User. SRODATA dupok size=12
-	0x0000 01 0a 2a 6d 61 69 6e 2e 55 73 65 72              ..*main.User
-type:.namedata.*func(*main.User) int- SRODATA dupok size=23
-	0x0000 00 15 2a 66 75 6e 63 28 2a 6d 61 69 6e 2e 55 73  ..*func(*main.Us
-	0x0010 65 72 29 20 69 6e 74                             er) int
-type:*func(*<unlinkable>.User) int SRODATA dupok size=56
+	0x0040 03 00 00 00 00 00 00 00                          ........
+	rel 24+8 t=1 type:.eqfunc24+0
+	rel 32+8 t=1 runtime.gcbits.+0
+	rel 40+4 t=5 type:.namedata.*[3]uintptr-+0
+	rel 44+4 t=-32763 type:*[3]uintptr+0
+	rel 48+8 t=1 type:uintptr+0
+	rel 56+8 t=1 type:[]uintptr+0
+type:*[3]uintptr SRODATA dupok size=56
 	0x0000 08 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
-	0x0010 6e 32 98 91 08 08 08 36 00 00 00 00 00 00 00 00  n2.....6........
+	0x0010 84 6a a5 49 08 08 08 36 00 00 00 00 00 00 00 00  .j.I...6........
 	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
 	0x0030 00 00 00 00 00 00 00 00                          ........
 	rel 24+8 t=1 runtime.memequal64·f+0
 	rel 32+8 t=1 runtime.gcbits.0100000000000000+0
-	rel 40+4 t=5 type:.namedata.*func(*main.User) int-+0
-	rel 48+8 t=1 type:func(*<unlinkable>.User) int+0
-type:func(*<unlinkable>.User) int SRODATA dupok size=72
+	rel 40+4 t=5 type:.namedata.*[3]uintptr-+0
+	rel 48+8 t=1 type:[3]uintptr+0
+type:.namedata.*[3]int- SRODATA dupok size=9
+	0x0000 00 07 2a 5b 33 5d 69 6e 74                       ..*[3]int
+type:*[3]int SRODATA dupok size=56
 	0x0000 08 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
-	0x0010 d6 4b 67 79 02 08 08 33 00 00 00 00 00 00 00 00  .Kgy...3........
-	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0030 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0040 00 00 00 00 00 00 00 00                          ........
-	rel 32+8 t=1 runtime.gcbits.0100000000000000+0
-	rel 40+4 t=5 type:.namedata.*func(*main.User) int-+0
-	rel 44+4 t=-32763 type:*func(*<unlinkable>.User) int+0
-	rel 56+8 t=1 type:*<unlinkable>.User+0
-	rel 64+8 t=1 type:int+0
-type:.namedata.*func(*main.User) string- SRODATA dupok size=26
-	0x0000 00 18 2a 66 75 6e 63 28 2a 6d 61 69 6e 2e 55 73  ..*func(*main.Us
-	0x0010 65 72 29 20 73 74 72 69 6e 67                    er) string
-type:*func(*<unlinkable>.User) string SRODATA dupok size=56
-	0x0000 08 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
-	0x0010 ae ba f3 b3 08 08 08 36 00 00 00 00 00 00 00 00  .......6........
+	0x0010 b7 c2 a0 47 08 08 08 36 00 00 00 00 00 00 00 00  ...G...6........
 	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
 	0x0030 00 00 00 00 00 00 00 00                          ........
 	rel 24+8 t=1 runtime.memequal64·f+0
 	rel 32+8 t=1 runtime.gcbits.0100000000000000+0
-	rel 40+4 t=5 type:.namedata.*func(*main.User) string-+0
-	rel 48+8 t=1 type:func(*<unlinkable>.User) string+0
-type:func(*<unlinkable>.User) string SRODATA dupok size=72
-	0x0000 08 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
-	0x0010 4c 72 c0 45 02 08 08 33 00 00 00 00 00 00 00 00  Lr.E...3........
+	rel 40+4 t=5 type:.namedata.*[3]int-+0
+	rel 48+8 t=1 type:[3]int+0
+type:[3]int SRODATA dupok size=72
+	0x0000 18 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+	0x0010 15 04 bf d2 0a 08 08 11 00 00 00 00 00 00 00 00  ................
 	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0030 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0040 00 00 00 00 00 00 00 00                          ........
-	rel 32+8 t=1 runtime.gcbits.0100000000000000+0
-	rel 40+4 t=5 type:.namedata.*func(*main.User) string-+0
-	rel 44+4 t=-32763 type:*func(*<unlinkable>.User) string+0
-	rel 56+8 t=1 type:*<unlinkable>.User+0
-	rel 64+8 t=1 type:string+0
-type:*<unlinkable>.User SRODATA size=104
+	0x0030 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+	0x0040 03 00 00 00 00 00 00 00                          ........
+	rel 24+8 t=1 type:.eqfunc24+0
+	rel 32+8 t=1 runtime.gcbits.+0
+	rel 40+4 t=5 type:.namedata.*[3]int-+0
+	rel 44+4 t=-32763 type:*[3]int+0
+	rel 48+8 t=1 type:int+0
+	rel 56+8 t=1 type:[]int+0
+type:.eqfunc12 SRODATA dupok size=16
+	0x0000 00 00 00 00 00 00 00 00 0c 00 00 00 00 00 00 00  ................
+	rel 0+8 t=1 runtime.memequal_varlen+0
+type:.namedata.*[3]int32- SRODATA dupok size=11
+	0x0000 00 09 2a 5b 33 5d 69 6e 74 33 32                 ..*[3]int32
+type:*[3]int32 SRODATA dupok size=56
 	0x0000 08 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
-	0x0010 a7 49 a0 e7 09 08 08 36 00 00 00 00 00 00 00 00  .I.....6........
-	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0030 00 00 00 00 00 00 00 00 00 00 00 00 02 00 02 00  ................
-	0x0040 10 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0050 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0060 00 00 00 00 00 00 00 00                          ........
-	rel 24+8 t=1 runtime.memequal64·f+0
-	rel 32+8 t=1 runtime.gcbits.0100000000000000+0
-	rel 40+4 t=5 type:.namedata.*main.User.+0
-	rel 48+8 t=1 type:<unlinkable>.User+0
-	rel 56+4 t=5 type:.importpath.<unlinkable>.+0
-	rel 72+4 t=5 type:.namedata.GetAge.+0
-	rel 76+4 t=26 type:func() int+0
-	rel 80+4 t=26 <unlinkable>.(*User).GetAge+0
-	rel 84+4 t=26 <unlinkable>.(*User).GetAge+0
-	rel 88+4 t=5 type:.namedata.GetName.+0
-	rel 92+4 t=26 type:func() string+0
-	rel 96+4 t=26 <unlinkable>.(*User).GetName+0
-	rel 100+4 t=26 <unlinkable>.(*User).GetName+0
-type:.namedata.*func(main.User) int- SRODATA dupok size=22
-	0x0000 00 14 2a 66 75 6e 63 28 6d 61 69 6e 2e 55 73 65  ..*func(main.Use
-	0x0010 72 29 20 69 6e 74                                r) int
-type:*func(<unlinkable>.User) int SRODATA dupok size=56
-	0x0000 08 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
-	0x0010 c1 66 d6 f9 08 08 08 36 00 00 00 00 00 00 00 00  .f.....6........
+	0x0010 73 09 d6 bc 08 08 08 36 00 00 00 00 00 00 00 00  s......6........
 	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
 	0x0030 00 00 00 00 00 00 00 00                          ........
 	rel 24+8 t=1 runtime.memequal64·f+0
 	rel 32+8 t=1 runtime.gcbits.0100000000000000+0
-	rel 40+4 t=5 type:.namedata.*func(main.User) int-+0
-	rel 48+8 t=1 type:func(<unlinkable>.User) int+0
-type:func(<unlinkable>.User) int SRODATA dupok size=72
-	0x0000 08 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
-	0x0010 14 9b fa 0c 02 08 08 33 00 00 00 00 00 00 00 00  .......3........
+	rel 40+4 t=5 type:.namedata.*[3]int32-+0
+	rel 48+8 t=1 type:[3]int32+0
+type:[3]int32 SRODATA dupok size=72
+	0x0000 0c 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+	0x0010 8a 40 d3 e8 0a 04 04 11 00 00 00 00 00 00 00 00  .@..............
 	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0030 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0040 00 00 00 00 00 00 00 00                          ........
-	rel 32+8 t=1 runtime.gcbits.0100000000000000+0
-	rel 40+4 t=5 type:.namedata.*func(main.User) int-+0
-	rel 44+4 t=-32763 type:*func(<unlinkable>.User) int+0
-	rel 56+8 t=1 type:<unlinkable>.User+0
-	rel 64+8 t=1 type:int+0
-type:.namedata.*func(main.User) string- SRODATA dupok size=25
-	0x0000 00 17 2a 66 75 6e 63 28 6d 61 69 6e 2e 55 73 65  ..*func(main.Use
-	0x0010 72 29 20 73 74 72 69 6e 67                       r) string
-type:*func(<unlinkable>.User) string SRODATA dupok size=56
+	0x0030 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+	0x0040 03 00 00 00 00 00 00 00                          ........
+	rel 24+8 t=1 type:.eqfunc12+0
+	rel 32+8 t=1 runtime.gcbits.+0
+	rel 40+4 t=5 type:.namedata.*[3]int32-+0
+	rel 44+4 t=-32763 type:*[3]int32+0
+	rel 48+8 t=1 type:int32+0
+	rel 56+8 t=1 type:[]int32+0
+type:.namedata.*[]go.shape.int- SRODATA dupok size=17
+	0x0000 00 0f 2a 5b 5d 67 6f 2e 73 68 61 70 65 2e 69 6e  ..*[]go.shape.in
+	0x0010 74                                               t
+type:*[]go.shape.int SRODATA dupok size=56
 	0x0000 08 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
-	0x0010 1e 51 00 62 08 08 08 36 00 00 00 00 00 00 00 00  .Q.b...6........
+	0x0010 1e 6e ec 00 08 08 08 36 00 00 00 00 00 00 00 00  .n.....6........
 	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
 	0x0030 00 00 00 00 00 00 00 00                          ........
 	rel 24+8 t=1 runtime.memequal64·f+0
 	rel 32+8 t=1 runtime.gcbits.0100000000000000+0
-	rel 40+4 t=5 type:.namedata.*func(main.User) string-+0
-	rel 48+8 t=1 type:func(<unlinkable>.User) string+0
-type:func(<unlinkable>.User) string SRODATA dupok size=72
-	0x0000 08 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
-	0x0010 83 97 55 36 02 08 08 33 00 00 00 00 00 00 00 00  ..U6...3........
-	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0030 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0040 00 00 00 00 00 00 00 00                          ........
-	rel 32+8 t=1 runtime.gcbits.0100000000000000+0
-	rel 40+4 t=5 type:.namedata.*func(main.User) string-+0
-	rel 44+4 t=-32763 type:*func(<unlinkable>.User) string+0
-	rel 56+8 t=1 type:<unlinkable>.User+0
-	rel 64+8 t=1 type:string+0
-type:.namedata.Name. SRODATA dupok size=6
-	0x0000 01 04 4e 61 6d 65                                ..Name
-type:.namedata.Age. SRODATA dupok size=5
-	0x0000 01 03 41 67 65                                   ..Age
-type:<unlinkable>.User SRODATA size=176
+	rel 40+4 t=5 type:.namedata.*[]go.shape.int-+0
+	rel 48+8 t=1 type:[]go.shape.int+0
+type:[]go.shape.int SRODATA dupok size=56
 	0x0000 18 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
-	0x0010 d8 75 f2 c4 07 08 08 19 00 00 00 00 00 00 00 00  .u..............
+	0x0010 8c f6 f2 a3 02 08 08 17 00 00 00 00 00 00 00 00  ................
 	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0030 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0040 02 00 00 00 00 00 00 00 02 00 00 00 00 00 00 00  ................
-	0x0050 00 00 00 00 02 00 02 00 40 00 00 00 00 00 00 00  ........@.......
-	0x0060 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0070 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0080 00 00 00 00 00 00 00 00 10 00 00 00 00 00 00 00  ................
-	0x0090 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x00a0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	rel 24+8 t=1 type:.eqfunc.<unlinkable>.User+0
+	0x0030 00 00 00 00 00 00 00 00                          ........
 	rel 32+8 t=1 runtime.gcbits.0100000000000000+0
-	rel 40+4 t=5 type:.namedata.*main.User.+0
-	rel 44+4 t=5 type:*<unlinkable>.User+0
-	rel 56+8 t=1 type:<unlinkable>.User+96
-	rel 80+4 t=5 type:.importpath.<unlinkable>.+0
-	rel 96+8 t=1 type:.namedata.Name.+0
-	rel 104+8 t=1 type:string+0
-	rel 120+8 t=1 type:.namedata.Age.+0
-	rel 128+8 t=1 type:int+0
-	rel 144+4 t=5 type:.namedata.GetAge.+0
-	rel 148+4 t=26 type:func() int+0
-	rel 152+4 t=26 <unlinkable>.(*User).GetAge+0
-	rel 156+4 t=26 <unlinkable>.User.GetAge+0
-	rel 160+4 t=5 type:.namedata.GetName.+0
-	rel 164+4 t=26 type:func() string+0
-	rel 168+4 t=26 <unlinkable>.(*User).GetName+0
-	rel 172+4 t=26 <unlinkable>.User.GetName+0
-go:itab.<unlinkable>.User,<unlinkable>.NamerAndAger SRODATA dupok size=40
-	0x0000 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0010 d8 75 f2 c4 00 00 00 00 00 00 00 00 00 00 00 00  .u..............
-	0x0020 00 00 00 00 00 00 00 00                          ........
-	rel 0+8 t=1 type:<unlinkable>.NamerAndAger+0
-	rel 8+8 t=1 type:<unlinkable>.User+0
-	rel 24+8 t=-32767 <unlinkable>.(*User).GetAge+0
-	rel 32+8 t=-32767 <unlinkable>.(*User).GetName+0
-go:cuinfo.packagename.main SDWARFCUINFO dupok size=0
-	0x0000 6d 61 69 6e                                      main
-go:info.main.User.GetAge$abstract SDWARFABSFCN dupok size=30
-	0x0000 05 6d 61 69 6e 2e 55 73 65 72 2e 47 65 74 41 67  .main.User.GetAg
-	0x0010 65 00 01 12 01 13 75 00 00 00 00 00 00 00        e.....u.......
-	rel 25+4 t=31 go:info.main.User+0
-go:info.main.User.GetName$abstract SDWARFABSFCN dupok size=31
-	0x0000 05 6d 61 69 6e 2e 55 73 65 72 2e 47 65 74 4e 61  .main.User.GetNa
-	0x0010 6d 65 00 01 11 01 13 75 00 00 00 00 00 00 00     me.....u.......
-	rel 26+4 t=31 go:info.main.User+0
-main..inittask SNOPTRDATA size=8
-	0x0000 00 00 00 00 00 00 00 00                          ........
-go:string."Foo" SRODATA dupok size=3
-	0x0000 46 6f 6f                                         Foo
-type:.namedata.*main.Namer. SRODATA dupok size=13
-	0x0000 01 0b 2a 6d 61 69 6e 2e 4e 61 6d 65 72           ..*main.Namer
-type:*main.Namer SRODATA size=56
+	rel 40+4 t=5 type:.namedata.*[]go.shape.int-+0
+	rel 44+4 t=-32763 type:*[]go.shape.int+0
+	rel 48+8 t=1 type:go.shape.int+0
+type:.namedata.*[]go.shape.int32- SRODATA dupok size=19
+	0x0000 00 11 2a 5b 5d 67 6f 2e 73 68 61 70 65 2e 69 6e  ..*[]go.shape.in
+	0x0010 74 33 32                                         t32
+type:*[]go.shape.int32 SRODATA dupok size=56
 	0x0000 08 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
-	0x0010 6d 48 03 f6 08 08 08 36 00 00 00 00 00 00 00 00  mH.....6........
+	0x0010 73 d6 25 90 08 08 08 36 00 00 00 00 00 00 00 00  s.%....6........
 	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
 	0x0030 00 00 00 00 00 00 00 00                          ........
 	rel 24+8 t=1 runtime.memequal64·f+0
 	rel 32+8 t=1 runtime.gcbits.0100000000000000+0
-	rel 40+4 t=5 type:.namedata.*main.Namer.+0
-	rel 48+8 t=1 type:main.Namer+0
-type:main.Namer SRODATA size=104
-	0x0000 10 00 00 00 00 00 00 00 10 00 00 00 00 00 00 00  ................
-	0x0010 b4 16 b4 19 07 08 08 14 00 00 00 00 00 00 00 00  ................
-	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0030 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0040 01 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00  ................
-	0x0050 00 00 00 00 00 00 00 00 18 00 00 00 00 00 00 00  ................
-	0x0060 00 00 00 00 00 00 00 00                          ........
-	rel 24+8 t=1 runtime.interequal·f+0
-	rel 32+8 t=1 runtime.gcbits.0200000000000000+0
-	rel 40+4 t=5 type:.namedata.*main.Namer.+0
-	rel 44+4 t=5 type:*main.Namer+0
-	rel 48+8 t=1 type:.importpath.<unlinkable>.+0
-	rel 56+8 t=1 type:main.Namer+96
-	rel 80+4 t=5 type:.importpath.<unlinkable>.+0
-	rel 96+4 t=5 type:.namedata.GetName.+0
-	rel 100+4 t=5 type:func() string+0
-type:*main.NamerAndAger SRODATA size=56
-	0x0000 08 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
-	0x0010 85 88 0c 8e 08 08 08 36 00 00 00 00 00 00 00 00  .......6........
-	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0030 00 00 00 00 00 00 00 00                          ........
-	rel 24+8 t=1 runtime.memequal64·f+0
-	rel 32+8 t=1 runtime.gcbits.0100000000000000+0
-	rel 40+4 t=5 type:.namedata.*main.NamerAndAger.+0
-	rel 48+8 t=1 type:main.NamerAndAger+0
-type:main.NamerAndAger SRODATA size=112
-	0x0000 10 00 00 00 00 00 00 00 10 00 00 00 00 00 00 00  ................
-	0x0010 9a d4 61 d1 07 08 08 14 00 00 00 00 00 00 00 00  ..a.............
-	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0030 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0040 02 00 00 00 00 00 00 00 02 00 00 00 00 00 00 00  ................
-	0x0050 00 00 00 00 00 00 00 00 20 00 00 00 00 00 00 00  ........ .......
-	0x0060 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	rel 24+8 t=1 runtime.interequal·f+0
-	rel 32+8 t=1 runtime.gcbits.0200000000000000+0
-	rel 40+4 t=5 type:.namedata.*main.NamerAndAger.+0
-	rel 44+4 t=5 type:*main.NamerAndAger+0
-	rel 48+8 t=1 type:.importpath.<unlinkable>.+0
-	rel 56+8 t=1 type:main.NamerAndAger+96
-	rel 80+4 t=5 type:.importpath.<unlinkable>.+0
-	rel 96+4 t=5 type:.namedata.GetAge.+0
-	rel 100+4 t=5 type:func() int+0
-	rel 104+4 t=5 type:.namedata.GetName.+0
-	rel 108+4 t=5 type:func() string+0
-type:.eqfunc.main.User SRODATA dupok size=8
-	0x0000 00 00 00 00 00 00 00 00                          ........
-	rel 0+8 t=1 type:.eq.main.User+0
-type:*func(*main.User) int SRODATA dupok size=56
-	0x0000 08 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
-	0x0010 44 2c 12 8e 08 08 08 36 00 00 00 00 00 00 00 00  D,.....6........
-	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0030 00 00 00 00 00 00 00 00                          ........
-	rel 24+8 t=1 runtime.memequal64·f+0
-	rel 32+8 t=1 runtime.gcbits.0100000000000000+0
-	rel 40+4 t=5 type:.namedata.*func(*main.User) int-+0
-	rel 48+8 t=1 type:func(*main.User) int+0
-type:func(*main.User) int SRODATA dupok size=72
-	0x0000 08 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
-	0x0010 5b 86 ca 2e 02 08 08 33 00 00 00 00 00 00 00 00  [......3........
-	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0030 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0040 00 00 00 00 00 00 00 00                          ........
-	rel 32+8 t=1 runtime.gcbits.0100000000000000+0
-	rel 40+4 t=5 type:.namedata.*func(*main.User) int-+0
-	rel 44+4 t=-32763 type:*func(*main.User) int+0
-	rel 56+8 t=1 type:*main.User+0
-	rel 64+8 t=1 type:int+0
-type:*func(*main.User) string SRODATA dupok size=56
-	0x0000 08 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
-	0x0010 44 6f 1a f6 08 08 08 36 00 00 00 00 00 00 00 00  Do.....6........
-	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0030 00 00 00 00 00 00 00 00                          ........
-	rel 24+8 t=1 runtime.memequal64·f+0
-	rel 32+8 t=1 runtime.gcbits.0100000000000000+0
-	rel 40+4 t=5 type:.namedata.*func(*main.User) string-+0
-	rel 48+8 t=1 type:func(*main.User) string+0
-type:func(*main.User) string SRODATA dupok size=72
-	0x0000 08 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
-	0x0010 b8 23 24 1f 02 08 08 33 00 00 00 00 00 00 00 00  .#$....3........
-	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0030 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0040 00 00 00 00 00 00 00 00                          ........
-	rel 32+8 t=1 runtime.gcbits.0100000000000000+0
-	rel 40+4 t=5 type:.namedata.*func(*main.User) string-+0
-	rel 44+4 t=-32763 type:*func(*main.User) string+0
-	rel 56+8 t=1 type:*main.User+0
-	rel 64+8 t=1 type:string+0
-type:*main.User SRODATA size=104
-	0x0000 08 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
-	0x0010 e1 67 27 b6 09 08 08 36 00 00 00 00 00 00 00 00  .g'....6........
-	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0030 00 00 00 00 00 00 00 00 00 00 00 00 02 00 02 00  ................
-	0x0040 10 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0050 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0060 00 00 00 00 00 00 00 00                          ........
-	rel 24+8 t=1 runtime.memequal64·f+0
-	rel 32+8 t=1 runtime.gcbits.0100000000000000+0
-	rel 40+4 t=5 type:.namedata.*main.User.+0
-	rel 48+8 t=1 type:main.User+0
-	rel 56+4 t=5 type:.importpath.<unlinkable>.+0
-	rel 72+4 t=5 type:.namedata.GetAge.+0
-	rel 76+4 t=26 type:func() int+0
-	rel 80+4 t=26 main.(*User).GetAge+0
-	rel 84+4 t=26 main.(*User).GetAge+0
-	rel 88+4 t=5 type:.namedata.GetName.+0
-	rel 92+4 t=26 type:func() string+0
-	rel 96+4 t=26 main.(*User).GetName+0
-	rel 100+4 t=26 main.(*User).GetName+0
-type:*func(main.User) int SRODATA dupok size=56
-	0x0000 08 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
-	0x0010 bc 87 9a 81 08 08 08 36 00 00 00 00 00 00 00 00  .......6........
-	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0030 00 00 00 00 00 00 00 00                          ........
-	rel 24+8 t=1 runtime.memequal64·f+0
-	rel 32+8 t=1 runtime.gcbits.0100000000000000+0
-	rel 40+4 t=5 type:.namedata.*func(main.User) int-+0
-	rel 48+8 t=1 type:func(main.User) int+0
-type:func(main.User) int SRODATA dupok size=72
-	0x0000 08 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
-	0x0010 20 8c b8 18 02 08 08 33 00 00 00 00 00 00 00 00   ......3........
-	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0030 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0040 00 00 00 00 00 00 00 00                          ........
-	rel 32+8 t=1 runtime.gcbits.0100000000000000+0
-	rel 40+4 t=5 type:.namedata.*func(main.User) int-+0
-	rel 44+4 t=-32763 type:*func(main.User) int+0
-	rel 56+8 t=1 type:main.User+0
-	rel 64+8 t=1 type:int+0
-type:*func(main.User) string SRODATA dupok size=56
-	0x0000 08 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
-	0x0010 a6 06 a5 66 08 08 08 36 00 00 00 00 00 00 00 00  ...f...6........
-	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0030 00 00 00 00 00 00 00 00                          ........
-	rel 24+8 t=1 runtime.memequal64·f+0
-	rel 32+8 t=1 runtime.gcbits.0100000000000000+0
-	rel 40+4 t=5 type:.namedata.*func(main.User) string-+0
-	rel 48+8 t=1 type:func(main.User) string+0
-type:func(main.User) string SRODATA dupok size=72
-	0x0000 08 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
-	0x0010 f7 f4 f7 ac 02 08 08 33 00 00 00 00 00 00 00 00  .......3........
-	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0030 01 00 01 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0040 00 00 00 00 00 00 00 00                          ........
-	rel 32+8 t=1 runtime.gcbits.0100000000000000+0
-	rel 40+4 t=5 type:.namedata.*func(main.User) string-+0
-	rel 44+4 t=-32763 type:*func(main.User) string+0
-	rel 56+8 t=1 type:main.User+0
-	rel 64+8 t=1 type:string+0
-type:main.User SRODATA size=176
+	rel 40+4 t=5 type:.namedata.*[]go.shape.int32-+0
+	rel 48+8 t=1 type:[]go.shape.int32+0
+type:[]go.shape.int32 SRODATA dupok size=56
 	0x0000 18 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
-	0x0010 0b 2a d4 99 07 08 08 19 00 00 00 00 00 00 00 00  .*..............
+	0x0010 48 29 1a 17 02 08 08 17 00 00 00 00 00 00 00 00  H)..............
 	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0030 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0040 02 00 00 00 00 00 00 00 02 00 00 00 00 00 00 00  ................
-	0x0050 00 00 00 00 02 00 02 00 40 00 00 00 00 00 00 00  ........@.......
-	0x0060 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0070 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x0080 00 00 00 00 00 00 00 00 10 00 00 00 00 00 00 00  ................
-	0x0090 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	0x00a0 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
-	rel 24+8 t=1 type:.eqfunc.main.User+0
+	0x0030 00 00 00 00 00 00 00 00                          ........
 	rel 32+8 t=1 runtime.gcbits.0100000000000000+0
-	rel 40+4 t=5 type:.namedata.*main.User.+0
-	rel 44+4 t=5 type:*main.User+0
-	rel 56+8 t=1 type:main.User+96
-	rel 80+4 t=5 type:.importpath.<unlinkable>.+0
-	rel 96+8 t=1 type:.namedata.Name.+0
-	rel 104+8 t=1 type:string+0
-	rel 120+8 t=1 type:.namedata.Age.+0
-	rel 128+8 t=1 type:int+0
-	rel 144+4 t=5 type:.namedata.GetAge.+0
-	rel 148+4 t=26 type:func() int+0
-	rel 152+4 t=26 main.(*User).GetAge+0
-	rel 156+4 t=26 main.User.GetAge+0
-	rel 160+4 t=5 type:.namedata.GetName.+0
-	rel 164+4 t=26 type:func() string+0
-	rel 168+4 t=26 main.(*User).GetName+0
-	rel 172+4 t=26 main.User.GetName+0
-gclocals·wgcWObbY2HYnK2SU/U22lA== SRODATA dupok size=10
-	0x0000 02 00 00 00 01 00 00 00 01 00                    ..........
-gclocals·J5F+7Qw7O7ve2QcWC7DpeQ== SRODATA dupok size=8
-	0x0000 02 00 00 00 00 00 00 00                          ........
-main.User.GetName.arginfo1 SRODATA static dupok size=11
-	0x0000 fe fe 00 08 08 08 fd 10 08 fd ff                 ...........
-main.User.GetName.argliveinfo SRODATA static dupok size=2
-	0x0000 00 00                                            ..
-main.User.GetAge.arginfo1 SRODATA static dupok size=11
-	0x0000 fe fe 00 08 08 08 fd 10 08 fd ff                 ...........
-main.User.GetAge.argliveinfo SRODATA static dupok size=2
-	0x0000 00 00                                            ..
+	rel 40+4 t=5 type:.namedata.*[]go.shape.int32-+0
+	rel 44+4 t=-32763 type:*[]go.shape.int32+0
+	rel 48+8 t=1 type:go.shape.int32+0
+gclocals·g2BeySu+wFnoycgXfElmcg== SRODATA dupok size=8
+	0x0000 01 00 00 00 00 00 00 00                          ........
 gclocals·IuErl7MOXaHVn7EZYWzfFA== SRODATA dupok size=10
 	0x0000 02 00 00 00 02 00 00 00 02 00                    ..........
-main.getName.arginfo1 SRODATA static dupok size=7
-	0x0000 fe 00 08 08 08 fd ff                             .......
-main.getName.argliveinfo SRODATA static dupok size=2
+gclocals·J5F+7Qw7O7ve2QcWC7DpeQ== SRODATA dupok size=8
+	0x0000 02 00 00 00 00 00 00 00                          ........
+main.Sum[go.shape.int32].arginfo1 SRODATA static dupok size=9
+	0x0000 fe 08 08 10 08 18 08 fd ff                       .........
+main.Sum[go.shape.int32].argliveinfo SRODATA static dupok size=2
 	0x0000 00 00                                            ..
-gclocals·Zzj2FaoDzNrZlobEaq+Nzw== SRODATA dupok size=10
-	0x0000 02 00 00 00 04 00 00 00 00 01                    ..........
-main.main.stkobj SRODATA static size=24
-	0x0000 01 00 00 00 00 00 00 00 e8 ff ff ff 18 00 00 00  ................
-	0x0010 08 00 00 00 00 00 00 00                          ........
-	rel 20+4 t=5 runtime.gcbits.0100000000000000+0
-gclocals·TjPuuCwdlCpTaRQGRKTrYw== SRODATA dupok size=10
-	0x0000 02 00 00 00 02 00 00 00 03 00                    ..........
-type:.eq.<unlinkable>.User.arginfo1 SRODATA static dupok size=5
-	0x0000 00 08 08 08 ff                                   .....
-type:.eq.<unlinkable>.User.argliveinfo SRODATA static dupok size=2
+gclocals·wgcWObbY2HYnK2SU/U22lA== SRODATA dupok size=10
+	0x0000 02 00 00 00 01 00 00 00 01 00                    ..........
+main.Sum[int32].arginfo1 SRODATA static dupok size=1
+	0x0000 ff                                               .
+main.Sum[int32].argliveinfo SRODATA static dupok size=2
 	0x0000 00 00                                            ..
-main.Namer.GetName.arginfo1 SRODATA static dupok size=7
-	0x0000 fe 00 08 08 08 fd ff                             .......
-main.Namer.GetName.argliveinfo SRODATA static dupok size=2
+main.Sum[go.shape.int].arginfo1 SRODATA static dupok size=9
+	0x0000 fe 08 08 10 08 18 08 fd ff                       .........
+main.Sum[go.shape.int].argliveinfo SRODATA static dupok size=2
 	0x0000 00 00                                            ..
-main.NamerAndAger.GetAge.arginfo1 SRODATA static dupok size=7
-	0x0000 fe 00 08 08 08 fd ff                             .......
-main.NamerAndAger.GetAge.argliveinfo SRODATA static dupok size=2
-	0x0000 00 00                                            ..
-main.NamerAndAger.GetName.arginfo1 SRODATA static dupok size=7
-	0x0000 fe 00 08 08 08 fd ff                             .......
-main.NamerAndAger.GetName.argliveinfo SRODATA static dupok size=2
-	0x0000 00 00                                            ..
-main.(*User).GetAge.arginfo1 SRODATA static dupok size=3
-	0x0000 00 08 ff                                         ...
-main.(*User).GetAge.argliveinfo SRODATA static dupok size=2
-	0x0000 00 00                                            ..
-main.(*User).GetName.arginfo1 SRODATA static dupok size=3
-	0x0000 00 08 ff                                         ...
-main.(*User).GetName.argliveinfo SRODATA static dupok size=2
-	0x0000 00 00                                            ..
-type:.eq.main.User.arginfo1 SRODATA static dupok size=5
-	0x0000 00 08 08 08 ff                                   .....
-type:.eq.main.User.argliveinfo SRODATA static dupok size=2
+main.Sum[int].arginfo1 SRODATA static dupok size=1
+	0x0000 ff                                               .
+main.Sum[int].argliveinfo SRODATA static dupok size=2
 	0x0000 00 00                                            ..
