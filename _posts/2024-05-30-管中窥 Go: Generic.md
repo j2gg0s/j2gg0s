@@ -1,18 +1,18 @@
-多态(polymorphism)或者泛型(generics)指的是让一个函数可以服务多种不同的类型.
+多态(polymorphism)或者泛型(generics)在此指的是让一个函数可以服务多种不同的类型.
 
 ## 实现
 [The Generic Dilemma](https://research.swtch.com/generic) 指出了实现泛型(generic)的两种主流方式.
 一是以C++ 为代表的 monomorphization 方案. 由编译器针对实际使用到每一类情况生成具体的代码.
 代价是编译缓慢且执行文件臃肿.  另一种是以 Java 为代表的 boxing.
-对象被分配在堆上, 函数之间仅传递指针. 运行时负责根据具体的类型推导出具体的方法.
+对象被分配在堆上, 函数之间仅传递指针. 运行根据具体的类型推导出具体的方法.
 这种方案的代价是拖慢了运行效率.
 
 Go 在 1.18 引入的方案, 官方名称是
 [GCShape Stenciling with Dictionaries](https://go.googlesource.com/proposal/+/refs/heads/master/design/generics-implementation-gcshape.md),
 简单理解就是 monoorphinzation 和 boxing 一起用.
-是不是有点阿里/字节等巨头技术优化的感觉了.
+是不是有点自己面向 OKR 做技术优化的感觉了.
 
-Go 的这套方案简单的可以理解为:
+Go 的这套方案可以简单的理解为:
 - 对于不同 gcshape, 采用 C++ 方案, 由编译器创建多份代码, 即 stenciling
 - 对于同一 gcshape, 采用 Java 方案, 在运行时根据路由表, 即 dicitionaries, 确定具体的方法
 - gcshape 的定义: two concrete types are in the same gcshape grouping if and only if they have the same underlying type or they are both pointer types
@@ -55,7 +55,7 @@ Go 的这套方案简单的可以理解为:
 - L112043 是在调用 Sum 前, 将路由表 main..dict.Sum[int] 作为第一个参数加载到寄存器 AX
 - L112044~46 代表了实际参数, 一个 int 数组, 占用三个寄存器
 
-泛型的主要处理逻辑在编译器, stenciling 和 dict 的生产基本都是在编译时.
+泛型的主要处理逻辑在编译器, stenciling 和 dict 的主要内容都是编译器生产的.
 由于对整个编译模块都不熟悉, 我们就不去代码里面扣逻辑了.
 但是在 [Generics implementation - Dictionaries](https://go.googlesource.com/proposal/+/refs/heads/master/design/generics-implementation-dictionaries.md#generics-implementation-dictionaries) 的基础上,
 结合汇编结果, 我们依然可以去理解&&验证这部分的逻辑.
@@ -98,11 +98,7 @@ func main() {
 ➜  go-generic git:(main) ✗ GOOS=linux GOARCH=amd64 go tool objdump -S main | cat -n - | grep -E "TEXT main.(Say|FooSay)" -A 16
 112042  TEXT main.FooSay(SB) /Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go
 112043  func FooSay(v Foo) string {
-112044    0x457820              493b6610                CMPQ SP, 0x10(R14)
-112045    0x457824              762c                    JBE 0x457852
-112046    0x457826              55                      PUSHQ BP
-112047    0x457827              4889e5                  MOVQ SP, BP
-112048    0x45782a              4883ec28                SUBQ $0x28, SP
+...
 112049          return v.Name() + " say hello"
 112050    0x45782e              e8adffffff              CALL main.Foo.Name(SB)
 112051    0x457833              4889d9                  MOVQ BX, CX
@@ -116,11 +112,7 @@ func main() {
 --
 112087  TEXT main.Say[go.shape.struct {}](SB) /Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go
 112088  func Say[T interface{ Name() string }](v T) string {
-112089    0x4578a0              493b6610                CMPQ SP, 0x10(R14)
-112090    0x4578a4              762f                    JBE 0x4578d5
-112091    0x4578a6              55                      PUSHQ BP
-112092    0x4578a7              4889e5                  MOVQ SP, BP
-112093    0x4578aa              4883ec28                SUBQ $0x28, SP
+...
 112094          return v.Name() + " say hello"
 112095    0x4578ae              488b08                  MOVQ 0(AX), CX
 112096    0x4578b1              4889c2                  MOVQ AX, DX
@@ -137,10 +129,11 @@ FooSay 的逻辑是很好理解的:
 - 接下来的几行都是为了调用 [func concatstring2(buf \*tmpBuf, a0, a1 string) string](https://github.com/golang/go/blob/go1.21.8/src/runtime/string.go#L59)
 - L112051, 112054 将 Foo.Name 的返回转移到寄存器 BX 和 CX
 - L112052, 112053 将 " say hello" 加载到寄存器 DI, SI
-- L112055 情况寄存器 AX
+- L112055 清空寄存器 AX
+
 对比之下, 我们可以发现 main.Say[go.shape.struct {}] 中的主要变化是调用 Foo.Name 的逻辑:
 - 此时的调用参数变为两个 AX 保存了 dict, BX 保存了 foo
-- L112095 中 0(AX) 时将 dict 的第一个字段转移到了 CX,
+- L112095 中 0(AX) 是将 dict 的第一个字段转移到了 CX,
 	- 从后面的 CALL CX, 我们可以推测这个字段存储 Foo.Name
 - L112096 将 dict 暂存到了 DX, 为 L112097 的 CALL CX 做准备
 - 后续的逻辑和 FooSay 一致
@@ -148,10 +141,13 @@ FooSay 的逻辑是很好理解的:
 ## 代价
 [Generics can make your Go code slower](https://planetscale.com/blog/generics-can-make-your-go-code-slower)
 深入而详细的讲述了 generic 带来的性能损失, 包括:
-- 当使用指针作为参数时, 泛型相比使用 interface{} 多一次 deference
+- 当使用指针作为参数时, 泛型相比 interface{} 多一次 deference
 - 当使用不同于 type parameter 的 interface{} 作为参数时, 泛型函数会调用 runtime.assertI2I
+
 这篇文章发表于 2022-03-30, 使用 go1.18,
-在今日 2024-05-31, 使用 go1.21.8, 基本都无法复现, 大概率时已经被优化掉, 小概率是我菜, 没复现对.
+在今日 2024-05-31, 使用 go1.21.8,
+基本都无法复现, 大概率是已经被优化掉, 小概率是我菜, 没复现对.
+但无论如何都不影响这是一篇写的很好的文章.
 
 我们需要修改下之前的示例代码, 添上一些我们需要的场景.
 - L35&L36 是用于区分指针调用, 在泛型函数中的逻辑.
@@ -224,6 +220,8 @@ FooSay 的逻辑是很好理解的:
 112097    0x4578db              0f1f440000              NOPL 0(AX)(AX*1)
 ```
 
+我们可以看到 SayerSay(&foo) 和 Say(&foo) 基本没有区别, 都只有一次动态调用.
+泛型函数中因为将 dict 作为第一个参数, 所以需要在 L112204 和 L112205 切换下寄存器.
 ```shell
 ➜  go-generic git:(main) ✗ GOOS=linux GOARCH=amd64 go tool objdump -S main | cat -n - | grep -E "TEXT main.SayerSay|TEXT main.Say\[go.shape.*uint8\]" -A 20
 112037  TEXT main.SayerSay(SB) /Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-generic/main.go
@@ -260,9 +258,13 @@ FooSay 的逻辑是很好理解的:
 112214    0x457a96              5d                      POPQ BP
 112215    0x457a97              c3                      RET
 ```
-我们可以看到 SayerSay(&foo) 和 Say(&foo) 基本没有区别, 都只有一次动态调用.
-泛型函数中因为将 dict 作为第一个参数, 所以需要在 L112204 和 L112205 切换下寄存器.
 
+Say(i) 是有点意思的:
+- L112098 的调用显示 AX 是 dict, BX 是 itab, CX 才是 foo
+- 那么 L112171 和 L112175 是针对泛型的一次方法路由, 调用的是 interface SayerWithLastname 的 Name 方法
+- L112236 和 112238 是针对 interface{} 的一次方法路由
+我们可以看到, 相比直接使用指针, 多一次方法路由, 但 runtime.assertI2I 已经不再需要了.
+多的一次方法路由是因为 L112095 以 SayerWithLastName 作为 key 来从 dict 中获取信息.
 ```shell
 ➜  go-generic git:(main) ✗ GOOS=linux GOARCH=amd64 go tool objdump -S main | cat -n - | grep -E "Say\(i|TEXT main.Say\[go.shape.interface|TEXT main.SayerWithLastName" -A 20
 112093          Say(i)
@@ -303,9 +305,3 @@ FooSay 的逻辑是很好理解的:
 112243    0x457af5              48895c2410              MOVQ BX, 0x10(SP)
 112244    0x457afa              e841ccffff              CALL runtime.morestack_noctxt.abi0(SB)
 ```
-Say(i) 是有点意思的:
-- L112098 的调用显示 AX 是 dict, BX 是 itab, CX 才是 foo
-- 那么 L112171 和 L112175 是针对泛型的一次方法路由, 调用的是 interface SayerWithLastname 的 Name 方法
-- L112236 和 112238 是针对 interface{} 的一次方法路由
-我们可以看到, 相比直接使用指针, 多一次方法路由, 但 runtime.assertI2I 已经不再需要了.
-多的一次方法路由是因为 L112095 以 SayerWithLastName 作为 key 来从 dict 中获取信息.
