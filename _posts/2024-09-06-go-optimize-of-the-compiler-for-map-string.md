@@ -106,4 +106,4 @@ TEXT main.getByBytes(SB) /Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/
 
 这种优化的前提是 Go 用个指向首地址的指针和长度来表示 string, 和 bytes 的表示方法基本相同.
 [unsafe.String(ptr \*byte, len IntegerType) string](https://github.com/golang/go/blob/master/src/unsafe/unsafe.go#L264)
-是非常的佐证.
+是有力的佐证.
