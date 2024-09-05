@@ -35,7 +35,7 @@ func getByBytes(m map[string]bool, key []byte) bool {
 }
 ```
 
-上述两个 benchmark 的逻辑其实是完全相同的, 但他们的 getByBytes 确会显著的快于 getByString.
+上述两个 benchmark 的逻辑其实是完全相同的, 但 getByBytes 会显著的快于 getByString.
 ```shell
 ✗ go test . --bench .
 goos: darwin
@@ -47,11 +47,13 @@ PASS
 ok      github.com/j2gg0s/j2gg0s/examples/go-map-string-optimize        3.982s
 ```
 
-这是因为 Go 的编译器有一些针对性的优化, [cmd/gc: optimized map[string] lookup from []byte key](https://github.com/golang/go/issues/3512).
+这是因为 Go 的编译器有一些针对性的优化,
+[cmd/gc: optimized map[string] lookup from []byte key](https://github.com/golang/go/issues/3512).
+简单的说, 就是当你通过 bytes 去访问 map[string] 时, 编译器会省略将 bytes 转化为 string 的步骤.
 
-我们首先看 getByString 的常规例子:
+我们首先看常规例子, getByString 的编译结果, 其:
 - 首先调用 `slicebytetostring` 将 []byte 转换为 stirng
-- 在调用 `mapaccess1_faststr` 访问 map[string]
+- 再调用 `mapaccess1_faststr` 访问 map[string]
 ```shell
 go tool objdump main | grep -A 20 "TEXT main.getByString"
 TEXT main.getByString(SB) /Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-map-string-optimize/main.go
@@ -76,7 +78,7 @@ TEXT main.getByString(SB) /Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples
   main.go:17            0x45d2a4                c3                      RET
   main.go:15            0x45d2a5                4889442408              MOVQ AX, 0x8(SP)
 ```
-而经过编译器优化的例子, getByBytes, 则不需要 slicebytetostring.
+而触发了编译器优化的例子, getByBytes, 则不需要 slicebytetostring.
 ```shell
 go tool objdump main | grep -A 20 "TEXT main.getByBytes"
 TEXT main.getByBytes(SB) /Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/go-map-string-optimize/main.go
@@ -102,6 +104,6 @@ TEXT main.getByBytes(SB) /Users/j2gg0s/go/src/github.com/j2gg0s/j2gg0s/examples/
   main.go:21            0x45d325                e816ccffff              CALL runtime.morestack_noctxt.abi0(SB)
 ```
 
-这种优化的前提是 Go 用个指向首地址的指针和长度来表示 string.
+这种优化的前提是 Go 用个指向首地址的指针和长度来表示 string, 和 bytes 的表示方法基本相同.
 [unsafe.String(ptr \*byte, len IntegerType) string](https://github.com/golang/go/blob/master/src/unsafe/unsafe.go#L264)
 是非常的佐证.
