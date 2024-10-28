@@ -99,7 +99,7 @@ cat -n objdump | grep -A 50 "TEXT main.fnReturn"
 ```
 
 在看 `fn`, 其级别逻辑是相同的, 区别的点在于:
-`fn` 中有两个变量, 0x8(sp) 和 0x10(sp), 前者用于保存会烦的值, 后者对应 v, defer 操作的是 v 而不是 0x8(sp).
+`fn` 中有两个变量, 0x8(sp) 和 0x10(sp), 前者用于保存返回的值, 后者对应 v, defer 操作的是 v 而不是 0x8(sp).
 而 `fnReturn` 中二者被编译优化成了个一个变量 0x8(sp).
 ```shell
 ✗ cat -n objdump | grep -A 50 "TEXT main.fn("
