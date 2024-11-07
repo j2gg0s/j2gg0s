@@ -1,13 +1,15 @@
 我日常使用 MacbookPro, 但有一半的开发工作通过 SSH 在 Linux/amd64 的环境下完成.
-考虑到我基本使用 vim 做为编辑器, 上述方案的唯一的痛点在于两台机器的无法共享剪贴盘.
+考虑到我基本使用 vim 做为编辑器, 上述方案的唯一痛点在于两台机器无法共享剪贴盘.
 
-昨天乘着配置新环境的机会, 搜索了一下解决方案. 我最终选择的是 OSC 52.
+昨天乘着配置新环境的机会, 搜索了一下解决方案, 选择了 OSC 52.
 
 OSC 是 Operating System Command 的缩写, 其约定了一系列特殊符号的含义.
 [OSC 52](https://www.reddit.com/r/vim/comments/k1ydpn/a_guide_on_how_to_copy_text_from_anywhere/)
 是其一个子类, 用于控制系统剪贴板. 我们引用 tmux 的文档来总结其原理:
 
-> Some terminals offer an escape sequence to set the clipboard. This is one of the operating system control sequences so it is known as OSC 52.
+> Some terminals offer an escape sequence to set the clipboard.
+> This is one of the operating system control sequences so it is known as OSC 52.
+>
 > The way it works is that when text is copied in tmux it is packaged up and sent to the outside terminal in a similar way to how tmux draws the text and colours and attributes. The outside terminal recognises the clipboard escape sequence and sets the system clipboard.
 
 当前大部分的终端都已经支持了这项功能,
