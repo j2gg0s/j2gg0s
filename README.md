@@ -1,4 +1,10 @@
-Backend develpoer, writes go with vim, for work and life. 
+## Current
+
+Still compiling…
+
+## Before 2025
+
+Backend developer, writes Go with Vim, for work and life.
 
 Focus && Interests
 - Go
