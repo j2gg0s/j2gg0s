@@ -2,7 +2,7 @@
 
 Still compiling…
 
-Long-term negative-sum game player
+Long-term player of negative-sum games
 
 ## Before 2025
 
